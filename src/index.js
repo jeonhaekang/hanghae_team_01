@@ -23,8 +23,7 @@ ReactDOM.render(
           minHeight: "100vh",
           height: "100%",
           overflow: "hidden",
-          backgroundColor: "#0a1929",
-          paddingTop: "150px",
+          backgroundColor: "white",
         }}
       >
         <layout.CssBaseline />
