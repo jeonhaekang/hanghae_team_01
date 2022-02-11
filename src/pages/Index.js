@@ -1,6 +1,6 @@
 import Detail from "./Detail";
 import Login from "./Login";
-import Main from "./main";
+import Main from "./Main";
 import Post from "./Post";
 import Signup from "./Signup";
 
