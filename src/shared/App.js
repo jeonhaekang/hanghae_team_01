@@ -16,7 +16,7 @@ function App() {
     >
       <CssBaseline />
       <Container maxWidth="lg">
-        <p>작업영역</p>
+        <p>작업영역...</p>
       </Container>
     </Box>
   );
