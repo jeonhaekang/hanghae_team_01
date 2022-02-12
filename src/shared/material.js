@@ -10,14 +10,19 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 //text
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
 const layout = {
   Box,
   Container,
   CssBaseline,
+  Card,
+  CardContent,
 };
 
 const button = {
@@ -27,6 +32,7 @@ const button = {
 
 const text = {
   TextField,
+  Typography,
 };
 
 export { layout, button, text };
