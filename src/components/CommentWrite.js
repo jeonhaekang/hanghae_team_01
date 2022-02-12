@@ -9,6 +9,7 @@ import Select from '@mui/material/Select';
 
 const CommentWrite = (props) => {
     const [postLanguage, setPostLanguage] = React.useState('');
+    
 
     const handleChange = (event) => {
         setPostLanguage(event.target.value);
