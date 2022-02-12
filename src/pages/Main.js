@@ -6,7 +6,7 @@ import { history } from "../redux/configStore";
 
 const Main = (props) => {
   return (
-    <layout.Stack spacing={3} sx={{ paddingTop: "70px" }}>
+    <layout.Stack spacing={3} sx={{ paddingTop: "100px" }}>
       <Card></Card>
       <Card></Card>
       <Card></Card>

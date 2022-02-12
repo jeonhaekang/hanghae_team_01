@@ -1,6 +1,6 @@
 import React from "react";
 
-import { button, layout, icon, text, card, chip } from "../shared/material";
+import { layout, icon, text, card, chip } from "../shared/material";
 import Divider from "@mui/material/Divider";
 
 const Card = (props) => {
@@ -42,7 +42,7 @@ const Card = (props) => {
             <text.Typography color="primary">username</text.Typography>
             <layout.Stack direction="row">
               <icon.FavoriteIcon color="error" />
-              <text.Typography component="h7">17</text.Typography>
+              17
             </layout.Stack>
           </layout.Stack>
         </layout.Box>
