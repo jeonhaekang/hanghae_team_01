@@ -5,7 +5,7 @@ import { RESP } from "../../shared/response";
 
 // action
 const LOAD_POSTS = "LOAD_POSTS";
-const POSTS = "POSTS";
+const SET_POSTS = "SET_POSTS";
 
 const initialState = {
   list: [],
@@ -13,7 +13,7 @@ const initialState = {
 
 // actionCreators
 const loadPosts = createAction(LOAD_POSTS, (postList) => ({ postList })); //게시물 작성
-const posts = createAction(POSTS, (post) => ({ post }));
+const setPosts = createAction(SET_POSTS, (post) => ({ post }));
 
 // middlewares
 const loadPostBE = () => {
@@ -35,13 +35,13 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list = action.payload.postList;
       }),
-    [POSTS]: (state, action) => produce(state, (draft) => {}),
+    [SET_POSTS]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
 
 const postActions = {
-  posts,
+  setPosts,
   loadPostBE,
 };
 

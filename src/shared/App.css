@@ -58,8 +58,22 @@
   bottom: 20px;
   right: 20px;
 }
-.postButton:hover{
+.postButton:hover {
   animation: rotate 0.2s;
+}
+
+.tagWrap {
+  border: 1px solid rgb(200, 200, 200);
+  padding: 10px;
+  border-radius: 5px;
+  
+  width: 100%;
+}
+
+.tagInput {
+  border: 0;
+  outline: none;
+  width: 100px;
 }
 
 @keyframes rotate {

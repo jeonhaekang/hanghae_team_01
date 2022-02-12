@@ -10,14 +10,19 @@ import {
   Select,
   Stack,
   Typography,
+  TextField,
+  Chip,
 } from "@mui/material";
-import TextField from "@mui/material/TextField";
 import { BiErrorCircle } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { postActions } from "../redux/modules/post";
 
 const Post = (props) => {
+  const dispatch = useDispatch();
   const [title, setTitle] = React.useState(""); // 제목 데이터
   const [contents, setContents] = React.useState(""); // 컨텐츠 데이터
   const [language, setLanguage] = React.useState("js"); // 언어 데이터
+  const [tag, setTag] = React.useState(["tag1", "tag2", "tag3"]);
 
   const con = contents.split("``");
 
@@ -40,9 +45,32 @@ const Post = (props) => {
     // textArea value변경
   };
 
+  const setPost = () => {
+    dispatch(postActions.setPosts());
+  }; // 게시물 등록
+
   const languageSelect = (e) => {
     setLanguage(e);
   };
+
+  console.log(tag);
+  const putTag = (e) => {
+    if (e.key === "Enter") {
+      setTag([...tag, e.target.value]);
+      e.target.value = "";
+    }
+  }; // 태그 입력
+
+  const delTag = (i) => {
+    setTag(
+      tag.filter((el, idx) => {
+        if (idx === i) {
+          return false;
+        }
+        return true;
+      })
+    );
+  }; // 태그 삭제
 
   return (
     <Container
@@ -139,7 +167,33 @@ const Post = (props) => {
             </Box>
           </Box>
 
-          <Button variant="contained">ERROR REPORT</Button>
+          <div className="tagWrap">
+            <Stack direction="row" spacing={1} display="inline-block">
+              {tag.map((el, i) => {
+                return (
+                  <Chip
+                    key={i}
+                    size="small"
+                    label={el}
+                    onDelete={() => {
+                      delTag(i);
+                    }}
+                  />
+                );
+              })}
+              <input
+                onKeyPress={(e) => {
+                  putTag(e);
+                }}
+                placeholder="태그를 입력해주세요"
+                className="tagInput"
+              ></input>
+            </Stack>
+          </div>
+
+          <Button onClick={setPost} variant="contained">
+            ERROR REPORT
+          </Button>
         </Stack>
       </Box>
     </Container>
