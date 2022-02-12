@@ -44,3 +44,26 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
+.postButton {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  border: 0;
+  background-color: #1976d2;
+  color: white;
+  font-size: 40px;
+
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+.postButton:hover{
+  animation: rotate 0.2s;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(90deg);
+  }
+}

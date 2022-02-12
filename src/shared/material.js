@@ -28,9 +28,12 @@ import CardContent from "@mui/material/CardContent";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import TagIcon from '@mui/icons-material/Tag';
 
 // chip
-import Chip from '@mui/material/Chip';
+import Chip from "@mui/material/Chip";
 
 const text = {
   Typography,
@@ -58,6 +61,9 @@ const icon = {
   LoginIcon,
   LogoutIcon,
   GroupAddIcon,
+  FavoriteIcon,
+  FavoriteBorderIcon,
+  TagIcon,
 };
 
 const chip = {
