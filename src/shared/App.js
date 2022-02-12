@@ -1,5 +1,8 @@
+import "./App.css";
 import React from "react";
 import { Route } from "react-router-dom";
+import { ConnectedRouter } from "connected-react-router";
+import { history } from "../redux/configStore";
 
 // material ui
 import { layout } from "./material";
@@ -15,12 +18,14 @@ function App() {
     <React.Fragment>
       <Header />
       <layout.Container maxWidth="lg">
-        <Route path="/" exact component={Main} />
-        <Route path="/user/login" exact component={Login} />
-        <Route path="/user/signup" exact component={Signup} />
-        <Route path="/posts" exact component={Post} />
-        <Route path="/edit/:postId" exact component={Post} />
-        <Route path="/posts/list/:postId" exact component={Detail} />
+        <ConnectedRouter history={history}>
+          <Route path="/" exact component={Main} />
+          <Route path="/user/login" exact component={Login} />
+          <Route path="/user/signup" exact component={Signup} />
+          <Route path="/posts" exact component={Post} />
+          <Route path="/edit/:postId" exact component={Post} />
+          <Route path="/posts/list/:postId" exact component={Detail} />
+        </ConnectedRouter>
       </layout.Container>
     </React.Fragment>
   );
