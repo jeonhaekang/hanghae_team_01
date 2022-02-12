@@ -4,20 +4,19 @@ import "./index.css";
 import App from "./shared/App";
 import reportWebVitals from "./reportWebVitals";
 
-// material ui
-import { layout } from "./shared/material";
-
 // router
 import { BrowserRouter } from "react-router-dom";
 
 // store
 import { Provider } from "react-redux";
 import store from "./redux/configStore";
+import { Box, CssBaseline } from "@mui/material";
 
 ReactDOM.render(
+  
   <Provider store={store}>
     <BrowserRouter>
-      <layout.Box
+      <Box
         sx={{
           width: "100%",
           minHeight: "100vh",
@@ -26,9 +25,9 @@ ReactDOM.render(
           backgroundColor: "white",
         }}
       >
-        <layout.CssBaseline />
+        <CssBaseline />
         <App />
-      </layout.Box>
+      </Box>
     </BrowserRouter>
   </Provider>,
 

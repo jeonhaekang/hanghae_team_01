@@ -4,20 +4,19 @@ import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configStore";
 
-// material ui
-import { layout } from "./material";
-
 // page/index
 import { Detail, Login, Main, Post, Signup } from "../pages/Index";
 
 // shared/index
 import { Header } from "./Index";
+import { Container } from "@mui/material";
 
 function App() {
+  
   return (
     <React.Fragment>
       <Header />
-      <layout.Container maxWidth="lg">
+      <Container maxWidth="lg">
         <ConnectedRouter history={history}>
           <Route path="/" exact component={Main} />
           <Route path="/user/login" exact component={Login} />
@@ -26,7 +25,7 @@ function App() {
           <Route path="/edit/:postId" exact component={Post} />
           <Route path="/posts/list/:postId" exact component={Detail} />
         </ConnectedRouter>
-      </layout.Container>
+      </Container>
     </React.Fragment>
   );
 }

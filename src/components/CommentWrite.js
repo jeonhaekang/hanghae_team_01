@@ -1,13 +1,14 @@
 import React from "react";
-import { layout, button, text } from "../shared/material";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { Box, Button, TextField } from "@mui/material";
 
 
 
 const CommentWrite = (props) => {
+    
     const [postLanguage, setPostLanguage] = React.useState('');
     
 
@@ -16,16 +17,16 @@ const CommentWrite = (props) => {
     };
     return (
         <React.Fragment>
-            <layout.Box sx={{ display: "flex", justifyContent: "center", marginTop: "10px", }}>
-                    <layout.Box
+            <Box sx={{ display: "flex", justifyContent: "center", marginTop: "10px", }}>
+                    <Box
                         sx={{
                             width: 500,
                             maxWidth: '100%',
                         }}
                     >
-                        <text.TextField fullWidth label="fullWidth" id="fullWidth" />
-                    </layout.Box>
-                    <layout.Box sx={{ width: 120 }}>
+                        <TextField fullWidth label="fullWidth" id="fullWidth" />
+                    </Box>
+                    <Box sx={{ width: 120 }}>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Language</InputLabel>
                             <Select
@@ -40,9 +41,9 @@ const CommentWrite = (props) => {
                                 <MenuItem value={30}>Css</MenuItem>
                             </Select>
                         </FormControl>
-                    </layout.Box>
-                    <button.Button variant="outlined">추가</button.Button>
-            </layout.Box>
+                    </Box>
+                    <Button variant="outlined">추가</Button>
+            </Box>
         </React.Fragment>
     );
 }

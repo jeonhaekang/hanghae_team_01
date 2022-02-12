@@ -1,10 +1,10 @@
 import React from "react";
 
-import { layout, icon, text, card, chip } from "../shared/material";
 import Divider from "@mui/material/Divider";
 
-import ReactDOM from "react-dom";
-import { WithContext as ReactTags } from "react-tag-input";
+import TagIcon from "@mui/icons-material/Tag";
+import { DiJava, DiJsBadge, DiPython, DiCss3, DiHtml5 } from "react-icons/di";
+import { Box, CardContent, Chip, Stack, Typography } from "@mui/material";
 
 const Card = (props) => {
   const {
@@ -18,14 +18,15 @@ const Card = (props) => {
   } = props;
 
   return (
-    <card.Card>
-      <card.CardContent
+    
+    <Card>
+      <CardContent
         sx={{
           position: "relative",
           borderBottom: "1px solid #E7EBF0",
         }}
       >
-        <text.Typography
+        <Typography
           sx={{
             whiteSpace: "nowrap",
             width: "700px",
@@ -36,52 +37,52 @@ const Card = (props) => {
           variant="h6"
           color="primary"
         >
-          <text.Typography></text.Typography>
+          <Typography></Typography>
           {postTitle}
-        </text.Typography>
-        <layout.Box
+        </Typography>
+        <Box
           sx={{
             position: "absolute",
             right: 10,
             top: 10,
           }}
         >
-          <layout.Stack
+          <Stack
             direction="row"
             divider={<Divider orientation="vertical" flexItem />}
             spacing={2}
           >
-            <text.Typography color="primary">
+            <Typography color="primary">
               {userInfo.username}
-            </text.Typography>
-            <text.Typography fontSize={23} color="primary">
-              {postLanguage === "javascript" ? <icon.DiJsBadge /> : ""}
-              {postLanguage === "css" ? <icon.DiCss3 /> : ""}
-              {postLanguage === "html" ? <icon.DiHtml5 /> : ""}
-              {postLanguage === "java" ? <icon.DiJava /> : ""}
-              {postLanguage === "python" ? <icon.DiPython /> : ""}
-            </text.Typography>
-            <layout.Stack direction="row">
-              <chip.Chip
+            </Typography>
+            <Typography fontSize={23} color="primary">
+              {postLanguage === "javascript" ? <DiJsBadge /> : ""}
+              {postLanguage === "css" ? <DiCss3 /> : ""}
+              {postLanguage === "html" ? <DiHtml5 /> : ""}
+              {postLanguage === "java" ? <DiJava /> : ""}
+              {postLanguage === "python" ? <DiPython /> : ""}
+            </Typography>
+            <Stack direction="row">
+              <Chip
                 color={postProblem ? "primary" : "error"}
                 size="small"
                 variant="outlined"
                 label={postProblem ? "FOUND" : "NOT FOUND"}
               />
-            </layout.Stack>
-          </layout.Stack>
-        </layout.Box>
+            </Stack>
+          </Stack>
+        </Box>
         <div className="cardContents">{postContents}</div>
-      </card.CardContent>
-      <card.CardContent>
-        <layout.Stack direction="row" spacing={1}>
-          <icon.TagIcon color="info"></icon.TagIcon>
+      </CardContent>
+      <CardContent>
+        <Stack direction="row" spacing={1}>
+          <TagIcon color="info"></TagIcon>
           {postTag.map((el, i) => {
-            return <chip.Chip key={i} size="small" label={el} />;
+            return <Chip key={i} size="small" label={el} />;
           })}
-        </layout.Stack>
-      </card.CardContent>
-    </card.Card>
+        </Stack>
+      </CardContent>
+    </Card>
   );
 };
 

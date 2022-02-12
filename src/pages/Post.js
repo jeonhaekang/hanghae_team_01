@@ -1,16 +1,11 @@
 import React from "react";
-import {
-  button,
-  layout,
-  text,
-  textfiled,
-  icon,
-  select,
-} from "../shared/material";
 import CodeEditor from "@uiw/react-textarea-code-editor";
-import Tag from "../components/Tag";
+import { Box, Button, Container, FormControl, InputLabel, MenuItem, Select, Stack, Typography } from "@mui/material";
+import TextField from '@mui/material/TextField';
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 const Post = (props) => {
+
   const [title, setTitle] = React.useState(""); // 제목 데이터
   const [contents, setContents] = React.useState(""); // 컨텐츠 데이터
   const [language, setLanguage] = React.useState("js"); // 언어 데이터
@@ -40,7 +35,8 @@ const Post = (props) => {
   };
 
   return (
-    <layout.Container
+    
+    <Container
       sx={{
         borderLeft: "1px solid #E7EBF0",
         borderRight: "1px solid #E7EBF0",
@@ -48,14 +44,14 @@ const Post = (props) => {
         minHeight: "100vh",
       }}
     >
-      <layout.Box sx={{ paddingTop: "100px" }}>
-        <layout.Stack spacing={3}>
-          <layout.Stack direction="row">
-            <icon.ErrorOutlineIcon color="error" />
-            <text.Typography>ERROR REPORT</text.Typography>
-          </layout.Stack>
-
-          <textfiled.TextField
+      <Box sx={{ paddingTop: "100px" }}>
+        <Stack spacing={3}>
+          <Stack direction="row">
+            <ErrorOutlineIcon color="error" />
+            <Typography>ERROR REPORT</Typography>
+          </Stack>
+          
+          <TextField
             id="outlined-password-input"
             label="ERROR TITLE"
             placeholder="제목을 입력해주세요"
@@ -65,7 +61,7 @@ const Post = (props) => {
             }}
           />
 
-          <textfiled.TextField
+          <TextField
             id="outlined-textarea"
             label="ERROR CONTENT"
             placeholder="본문을 입력해주세요"
@@ -75,41 +71,40 @@ const Post = (props) => {
               setContents(e.target.value);
             }}
           />
-          <layout.Stack direction="row" spacing={2}>
-            <button.Button onClick={setCode} variant="contained">
+          <Stack direction="row" spacing={2}>
+            <Button onClick={setCode} variant="contained">
               CODE
-            </button.Button>
-
-            <select.FormControl sx={{ width: "200px" }}>
-              <select.InputLabel id="demo-simple-select-label">
+            </Button>
+            <FormControl sx={{ width: "200px" }}>
+              <InputLabel id="demo-simple-select-label">
                 language
-              </select.InputLabel>
-              <select.Select
+              </InputLabel>
+              <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={language}
                 label="language"
                 onChange={(e) => languageSelect(e.target.value)}
               >
-                <select.MenuItem value="js">javascript</select.MenuItem>
-                <select.MenuItem value="java">java</select.MenuItem>
-                <select.MenuItem value="python">python</select.MenuItem>
-                <select.MenuItem value="css">css</select.MenuItem>
-                <select.MenuItem value="html">html</select.MenuItem>
-              </select.Select>
-            </select.FormControl>
-          </layout.Stack>
+                <MenuItem value="js">javascript</MenuItem>
+                <MenuItem value="java">java</MenuItem>
+                <MenuItem value="python">python</MenuItem>
+                <MenuItem value="css">css</MenuItem>
+                <MenuItem value="html">html</MenuItem>
+              </Select>
+            </FormControl>
+          </Stack>
 
-          <text.Typography>PREVIEW</text.Typography>
-          <layout.Box
+          <Typography>PREVIEW</Typography>
+          <Box
             sx={{
               border: "1px solid rgb(200,200,200)",
               borderRadius: "5px",
               padding: "15px",
             }}
           >
-            <layout.Box component="h2">{title}</layout.Box>
-            <layout.Box whiteSpace="pre-wrap" component="pre">
+            <Box component="h2">{title}</Box>
+            <Box whiteSpace="pre-wrap" component="pre">
               {con.map((el, i) => {
                 if (i % 2 === 1) {
                   return (
@@ -128,16 +123,16 @@ const Post = (props) => {
                     ></CodeEditor>
                   );
                 } else {
-                  return <text.Typography key={i}> {el} </text.Typography>;
+                  return <Typography key={i}> {el} </Typography>;
                 }
               })}
-            </layout.Box>
-          </layout.Box>
+            </Box>
+          </Box>
           
-          <button.Button variant="contained">ERROR REPORT</button.Button>
-        </layout.Stack>
-      </layout.Box>
-    </layout.Container>
+          <Button variant="contained">ERROR REPORT</Button>
+        </Stack>
+      </Box>
+    </Container>
   );
 };
 

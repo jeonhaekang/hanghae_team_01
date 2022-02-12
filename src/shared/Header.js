@@ -1,16 +1,17 @@
 import React from "react";
 
-import { button, layout, text } from "./material";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import { history } from "../redux/configStore";
+import { Box, Button, Typography } from "@mui/material";
 
 const Header = (props) => {
+  
   return (
-    <layout.Box sx={{ position: "fixid", left: 0, top: 0 }}>
+    <Box sx={{ position: "fixid", left: 0, top: 0 }}>
       <AppBar>
         <Toolbar>
-          <text.Typography
+          <Typography
             onClick={() => {
               history.push("/");
             }}
@@ -19,26 +20,26 @@ const Header = (props) => {
             sx={{ flexGrow: 1 }}
           >
             404 Found
-          </text.Typography>
-          <button.Button
+          </Typography>
+          <Button
             onClick={() => {
               history.push("/user/login");
             }}
             color="inherit"
           >
             Login
-          </button.Button>
-          <button.Button
+          </Button>
+          <Button
             onClick={() => {
               history.push("/user/signup");
             }}
             color="inherit"
           >
             Signup
-          </button.Button>
+          </Button>
         </Toolbar>
       </AppBar>
-    </layout.Box>
+    </Box>
   );
 };
 
