@@ -2,9 +2,8 @@ import React from "react";
 
 import Divider from "@mui/material/Divider";
 
-import TagIcon from "@mui/icons-material/Tag";
 import { DiJava, DiJsBadge, DiPython, DiCss3, DiHtml5 } from "react-icons/di";
-import { Box, CardContent, Chip, Stack, Typography } from "@mui/material";
+import { Card as CardBox, Box, CardContent, Chip, Stack, Typography } from "@mui/material";
 
 const Card = (props) => {
   const {
@@ -19,7 +18,7 @@ const Card = (props) => {
 
   return (
     
-    <Card>
+    <CardBox>
       <CardContent
         sx={{
           position: "relative",
@@ -76,13 +75,12 @@ const Card = (props) => {
       </CardContent>
       <CardContent>
         <Stack direction="row" spacing={1}>
-          <TagIcon color="info"></TagIcon>
           {postTag.map((el, i) => {
             return <Chip key={i} size="small" label={el} />;
           })}
         </Stack>
       </CardContent>
-    </Card>
+    </CardBox>
   );
 };
 
