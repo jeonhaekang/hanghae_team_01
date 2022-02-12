@@ -8,26 +8,31 @@ import {
   select,
 } from "../shared/material";
 import CodeEditor from "@uiw/react-textarea-code-editor";
+import Tag from "../components/Tag";
 
 const Post = (props) => {
-  const [title, setTitle] = React.useState("");
-  const [contents, setContents] = React.useState("");
-  const [language, setLanguage] = React.useState("js");
+  const [title, setTitle] = React.useState(""); // 제목 데이터
+  const [contents, setContents] = React.useState(""); // 컨텐츠 데이터
+  const [language, setLanguage] = React.useState("js"); // 언어 데이터
 
   const con = contents.split("``");
 
   const contentsRef = React.useRef(null);
-  const setCode = () => {
-    const start = contentsRef.current.selectionStart;
-    const end = contentsRef.current.selectionEnd;
 
-    const startText = contentsRef.current.value.substring(0, start);
-    const targetText = contentsRef.current.value.substring(start, end);
-    const endText = contentsRef.current.value.substring(end);
+  const setCode = () => { // 드래그한 부분 코드로 변환
+    const start = contentsRef.current.selectionStart; // 드래그 부분 시작인덱스
+    const end = contentsRef.current.selectionEnd; // 드래그 부분 종료 인덱스
 
-    const result = startText + "``" + targetText + "``" + endText;
+    const startText = contentsRef.current.value.substring(0, start); // 드래그 영역 앞부분
+    const targetText = contentsRef.current.value.substring(start, end); // 드래그 영역
+    const endText = contentsRef.current.value.substring(end); // 드래그 영역 뒷부분
+
+    const result = startText + "``" + targetText + "``" + endText; 
+    // 드래그 영역 앞뒤로 ``추가
+
     setContents(result);
     contentsRef.current.value = result;
+    // textArea value변경
   };
 
   const languageSelect = (e) => {
@@ -112,7 +117,7 @@ const Post = (props) => {
                       key={i}
                       value={el}
                       language={language}
-                      placeholder="Please enter JS code."
+                      placeholder="Please enter code."
                       padding={15}
                       style={{
                         fontSize: 12,
@@ -128,6 +133,7 @@ const Post = (props) => {
               })}
             </layout.Box>
           </layout.Box>
+          
           <button.Button variant="contained">ERROR REPORT</button.Button>
         </layout.Stack>
       </layout.Box>

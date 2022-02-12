@@ -3,7 +3,20 @@ import React from "react";
 import { layout, icon, text, card, chip } from "../shared/material";
 import Divider from "@mui/material/Divider";
 
+import ReactDOM from "react-dom";
+import { WithContext as ReactTags } from "react-tag-input";
+
 const Card = (props) => {
+  const {
+    postContents,
+    postId,
+    postLanguage,
+    postProblem,
+    postTag,
+    postTitle,
+    userInfo,
+  } = props;
+
   return (
     <card.Card>
       <card.CardContent
@@ -23,9 +36,8 @@ const Card = (props) => {
           variant="h6"
           color="primary"
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed
-          maximus sapien. Proin aliquam dignissim orci eget placerat. Aliquam
-          vestibulum molestie tellus
+          <text.Typography></text.Typography>
+          {postTitle}
         </text.Typography>
         <layout.Box
           sx={{
@@ -39,35 +51,49 @@ const Card = (props) => {
             divider={<Divider orientation="vertical" flexItem />}
             spacing={2}
           >
-            <text.Typography color="primary">username</text.Typography>
+            <text.Typography color="primary">
+              {userInfo.username}
+            </text.Typography>
+            <text.Typography fontSize={23} color="primary">
+              {postLanguage === "javascript" ? <icon.DiJsBadge /> : ""}
+              {postLanguage === "css" ? <icon.DiCss3 /> : ""}
+              {postLanguage === "html" ? <icon.DiHtml5 /> : ""}
+              {postLanguage === "java" ? <icon.DiJava /> : ""}
+              {postLanguage === "python" ? <icon.DiPython /> : ""}
+            </text.Typography>
             <layout.Stack direction="row">
-              <icon.FavoriteIcon color="error" />
-              17
+              <chip.Chip
+                color={postProblem ? "primary" : "error"}
+                size="small"
+                variant="outlined"
+                label={postProblem ? "FOUND" : "NOT FOUND"}
+              />
             </layout.Stack>
           </layout.Stack>
         </layout.Box>
-        <div className="cardContents">
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout. The point of
-          using Lorem Ipsum is that it has a more-or-less normal distribution of
-          letters, as opposed to using 'Content here, content here', making it
-          look like readable English. Many desktop publishing packages and web
-          page editors now use Lorem Ipsum as their default model text, and a
-          search for 'lorem ipsum' will uncover many web sites still in their
-          infancy. Various versions have evolved over the years, sometimes by
-          accident, sometimes on purpose (injected humour and the like).
-        </div>
+        <div className="cardContents">{postContents}</div>
       </card.CardContent>
       <card.CardContent>
         <layout.Stack direction="row" spacing={1}>
           <icon.TagIcon color="info"></icon.TagIcon>
-          <chip.Chip size="small" label="javascript" />
-          <chip.Chip size="small" label="java" />
-          <chip.Chip size="small" label="python" />
+          {postTag.map((el, i) => {
+            return <chip.Chip key={i} size="small" label={el} />;
+          })}
         </layout.Stack>
       </card.CardContent>
     </card.Card>
   );
+};
+
+Card.defaultProps = {
+  postContents: "본문",
+  postId: null,
+  postLanguage: "javascript",
+  postProblem: false,
+  postTag: [],
+  postTitle: "제목",
+  postLike: 0,
+  userInfo: { username: "유저", userId: 0 },
 };
 
 export default Card;

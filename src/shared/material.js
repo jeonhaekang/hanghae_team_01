@@ -28,10 +28,9 @@ import CardContent from "@mui/material/CardContent";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import TagIcon from "@mui/icons-material/Tag";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import { DiJava, DiJsBadge, DiPython, DiCss3, DiHtml5 } from "react-icons/di";
 
 // textfiled
 import { TextField } from "@mui/material";
@@ -71,10 +70,13 @@ const icon = {
   LoginIcon,
   LogoutIcon,
   GroupAddIcon,
-  FavoriteIcon,
-  FavoriteBorderIcon,
   TagIcon,
   ErrorOutlineIcon,
+  DiJava,
+  DiJsBadge,
+  DiPython,
+  DiCss3,
+  DiHtml5,
 };
 
 const textfiled = {
