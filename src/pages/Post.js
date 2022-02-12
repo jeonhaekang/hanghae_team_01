@@ -1,11 +1,20 @@
 import React from "react";
 import CodeEditor from "@uiw/react-textarea-code-editor";
-import { Box, Button, Container, FormControl, InputLabel, MenuItem, Select, Stack, Typography } from "@mui/material";
-import TextField from '@mui/material/TextField';
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  Typography,
+} from "@mui/material";
+import TextField from "@mui/material/TextField";
+import { BiErrorCircle } from "react-icons/bi";
 
 const Post = (props) => {
-
   const [title, setTitle] = React.useState(""); // 제목 데이터
   const [contents, setContents] = React.useState(""); // 컨텐츠 데이터
   const [language, setLanguage] = React.useState("js"); // 언어 데이터
@@ -14,7 +23,8 @@ const Post = (props) => {
 
   const contentsRef = React.useRef(null);
 
-  const setCode = () => { // 드래그한 부분 코드로 변환
+  const setCode = () => {
+    // 드래그한 부분 코드로 변환
     const start = contentsRef.current.selectionStart; // 드래그 부분 시작인덱스
     const end = contentsRef.current.selectionEnd; // 드래그 부분 종료 인덱스
 
@@ -22,7 +32,7 @@ const Post = (props) => {
     const targetText = contentsRef.current.value.substring(start, end); // 드래그 영역
     const endText = contentsRef.current.value.substring(end); // 드래그 영역 뒷부분
 
-    const result = startText + "``" + targetText + "``" + endText; 
+    const result = startText + "``" + targetText + "``" + endText;
     // 드래그 영역 앞뒤로 ``추가
 
     setContents(result);
@@ -35,7 +45,6 @@ const Post = (props) => {
   };
 
   return (
-    
     <Container
       sx={{
         borderLeft: "1px solid #E7EBF0",
@@ -47,10 +56,13 @@ const Post = (props) => {
       <Box sx={{ paddingTop: "100px" }}>
         <Stack spacing={3}>
           <Stack direction="row">
-            <ErrorOutlineIcon color="error" />
+            <Typography variant="h5" color="error">
+              <BiErrorCircle />
+            </Typography>
+
             <Typography>ERROR REPORT</Typography>
           </Stack>
-          
+
           <TextField
             id="outlined-password-input"
             label="ERROR TITLE"
@@ -76,9 +88,7 @@ const Post = (props) => {
               CODE
             </Button>
             <FormControl sx={{ width: "200px" }}>
-              <InputLabel id="demo-simple-select-label">
-                language
-              </InputLabel>
+              <InputLabel id="demo-simple-select-label">language</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -128,7 +138,7 @@ const Post = (props) => {
               })}
             </Box>
           </Box>
-          
+
           <Button variant="contained">ERROR REPORT</Button>
         </Stack>
       </Box>
