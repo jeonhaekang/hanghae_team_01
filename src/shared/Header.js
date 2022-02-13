@@ -5,7 +5,6 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import { history } from "../redux/configStore";
 import { Box, Button, Typography } from "@mui/material";
-import { getCookie, deleteCookie } from "./Cookie";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const Header = (props) => {

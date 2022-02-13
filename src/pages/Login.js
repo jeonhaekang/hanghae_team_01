@@ -2,22 +2,33 @@ import React from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from '@mui/material/TextField';
-import { setCookie, getCookie, deleteCookie } from "../shared/Cookie";
 
 import {actionCreators as userActions} from "../redux/modules/user";
 import { useDispatch } from "react-redux";
+import {emailCheck, pwdCheck} from "../shared/common";
 
 
 
 const Login = (props) => {
   const dispatch = useDispatch();
-  const [username, setUsername] = React.useState('');
-  const [passsward, setPasswerd] = React.useState('');
+  const [id, setId] = React.useState("");
+  const [pwd, setPwd] = React.useState("");
 
   
   const login = () => {
-    console.log("로그인")
-    dispatch(userActions.loginAction({user_name: "perl"}));
+    if (id === "" || pwd === "") {
+      window.alert("아이디, 패스워드, 닉네임을 모두 입력해주세요!");
+      return;
+    }
+    if(!emailCheck(id)){
+      window.alert('이메일 형식이 맞지 않습니다!');
+      return;
+    }
+    if(!pwdCheck(pwd)){
+      window.alert('이메일 형식이 맞지 않습니다!');
+      return;
+    }
+    dispatch(userActions.loginAction(id, pwd));
   }
 
   return (
@@ -32,10 +43,10 @@ const Login = (props) => {
           <TextField
             sx={{ paddingTop: '40px', }}
             id="standard-required"
-            defaultValue={username}
+            defaultValue={id}
             variant="filled"
             onChange={(e) => {
-              setUsername(e.target.value);
+              setId(e.target.value);
             }}
           />
           <br></br>
@@ -43,10 +54,10 @@ const Login = (props) => {
           <TextField
             sx={{ paddingTop: '40px', }}
             id="standard-required"
-            defaultValue={passsward}
+            defaultValue={pwd}
             variant="filled"
             onChange={(e) => {
-              setPasswerd(e.target.value);
+              setPwd(e.target.value);
             }}
           />
           <br></br>
