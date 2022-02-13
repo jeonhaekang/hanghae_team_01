@@ -1,8 +1,10 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+import instance from "../../shared/Request";
 
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 import { RESP } from "../../shared/response";
+import axios from "axios";
 
 //actions
 const USER_LOGIN = "USER_LOGIN";
@@ -16,39 +18,57 @@ const getUser = createAction(GET_USER, (user) => ({ user }));
 
 //middleware actions
 const initialState = {
-    user: null,
-    result: false,
+  user: null,
+  result: false,
 };
 
 //middleware actions
-const loginAction = (user) => {
-    return function (dispatch, getState, {history}) {
-        dispatch(userLogin(user));
-        history.push('/');
-    }
-}
+const signupBE = (post) => {
+  return function (dispatch, getState, { history }) {
 
-export default handleActions({
-    [USER_LOGIN]: (state, action) => produce(state, (draft) => {
+    instance
+      .post("/user/signup", post)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+const loginAction = (user) => {
+  return function (dispatch, getState, { history }) {
+    dispatch(userLogin(user));
+    history.push("/");
+  };
+};
+
+export default handleActions(
+  {
+    [USER_LOGIN]: (state, action) =>
+      produce(state, (draft) => {
         setCookie("result", "success");
         draft.user = action.payload.user;
         draft.result = true;
-        }),
-    [USER_LOGOUT]: (state, action) => produce(state, (draft) => {
+      }),
+    [USER_LOGOUT]: (state, action) =>
+      produce(state, (draft) => {
         deleteCookie("result");
         draft.user = null;
         draft.result = false;
-        }),
+      }),
     [GET_USER]: (state, action) => produce(state, (draft) => {}),
-    },
-    initialState
-  );
+  },
+  initialState
+);
 
-  const actionCreators = {
-    userLogin,
-    userLogout,
-    getUser,
-    loginAction,
-  };
-  
-  export { actionCreators };
+const actionCreators = {
+  userLogin,
+  userLogout,
+  getUser,
+  loginAction,
+  signupBE,
+};
+
+export { actionCreators };
