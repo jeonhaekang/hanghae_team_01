@@ -22,11 +22,19 @@ const loadPostBE = () => {
     //   .get("/posts/list")
     //   .then(() => {})
     //   .catch(() => {});
-    const postList = RESP.POSTS_LIST;
-
-    dispatch(loadPosts(postList.postList)); // redux에 서버에서 가져온 리스트 추가
+    //const postList = RESP.POSTS_LIST;
+    //dispatch(loadPosts(postList.postList)); // redux에 서버에서 가져온 리스트 추가
   };
 }; // 서버에서 게시물 리스트 가져옴
+
+const setPostsBE = (post) => {
+  return async function (dispatch, getState, { history }) {
+    const time = new Date().getTime();
+    dispatch(setPosts({ ...post, postId: time }));
+    alert("게시물을 등록하였습니다.")
+    history.replace("/");
+  };
+};
 
 // reducer
 export default handleActions(
@@ -35,14 +43,17 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list = action.payload.postList;
       }),
-    [SET_POSTS]: (state, action) => produce(state, (draft) => {}),
+    [SET_POSTS]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list.unshift(action.payload.post);
+      }),
   },
   initialState
 );
 
 const postActions = {
-  setPosts,
   loadPostBE,
+  setPostsBE,
 };
 
 export { postActions };
