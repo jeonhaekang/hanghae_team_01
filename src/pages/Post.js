@@ -10,14 +10,19 @@ import {
   Select,
   Stack,
   Typography,
+  TextField,
+  Chip,
 } from "@mui/material";
-import TextField from "@mui/material/TextField";
 import { BiErrorCircle } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { postActions } from "../redux/modules/post";
 
 const Post = (props) => {
+  const dispatch = useDispatch();
   const [title, setTitle] = React.useState(""); // 제목 데이터
   const [contents, setContents] = React.useState(""); // 컨텐츠 데이터
   const [language, setLanguage] = React.useState("js"); // 언어 데이터
+  const [tag, setTag] = React.useState([]);
 
   const con = contents.split("``");
 
@@ -40,9 +45,45 @@ const Post = (props) => {
     // textArea value변경
   };
 
+  const setPost = () => {
+    if (title === "") {
+      alert("제목을 입력해주세요.");
+      return;
+    } else if (contents === "") {
+      alert("본문을 입력해주세요.");
+      return;
+    }
+    const post = {
+      postTitle: title,
+      postContents: contents,
+      postLanguage: language,
+      postTag: tag,
+      postProblem: false,
+    };
+    dispatch(postActions.setPostsBE(post));
+  }; // 게시물 등록
+
   const languageSelect = (e) => {
     setLanguage(e);
   };
+
+  const putTag = (e) => {
+    if (e.key === "Enter") {
+      setTag([...tag, e.target.value]);
+      e.target.value = "";
+    }
+  }; // 태그 입력
+
+  const delTag = (i) => {
+    setTag(
+      tag.filter((el, idx) => {
+        if (idx === i) {
+          return false;
+        }
+        return true;
+      })
+    );
+  }; // 태그 삭제
 
   return (
     <Container
@@ -53,95 +94,119 @@ const Post = (props) => {
         minHeight: "100vh",
       }}
     >
-      <Box sx={{ paddingTop: "100px" }}>
-        <Stack spacing={3}>
-          <Stack direction="row">
-            <Typography variant="h5" color="error">
-              <BiErrorCircle />
-            </Typography>
+      <Stack spacing={3} sx={{ paddingTop: "100px" }}>
+        <Stack direction="row">
+          <Typography variant="h5" color="error">
+            <BiErrorCircle />
+          </Typography>
 
-            <Typography>ERROR REPORT</Typography>
-          </Stack>
-
-          <TextField
-            id="outlined-password-input"
-            label="ERROR TITLE"
-            placeholder="제목을 입력해주세요"
-            autoComplete="current-password"
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
-          />
-
-          <TextField
-            id="outlined-textarea"
-            label="ERROR CONTENT"
-            placeholder="본문을 입력해주세요"
-            inputRef={contentsRef}
-            multiline
-            onChange={(e) => {
-              setContents(e.target.value);
-            }}
-          />
-          <Stack direction="row" spacing={2}>
-            <Button onClick={setCode} variant="contained">
-              CODE
-            </Button>
-            <FormControl sx={{ width: "200px" }}>
-              <InputLabel id="demo-simple-select-label">language</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={language}
-                label="language"
-                onChange={(e) => languageSelect(e.target.value)}
-              >
-                <MenuItem value="js">javascript</MenuItem>
-                <MenuItem value="java">java</MenuItem>
-                <MenuItem value="python">python</MenuItem>
-                <MenuItem value="css">css</MenuItem>
-                <MenuItem value="html">html</MenuItem>
-              </Select>
-            </FormControl>
-          </Stack>
-
-          <Typography>PREVIEW</Typography>
-          <Box
-            sx={{
-              border: "1px solid rgb(200,200,200)",
-              borderRadius: "5px",
-              padding: "15px",
-            }}
-          >
-            <Box component="h2">{title}</Box>
-            <Box whiteSpace="pre-wrap" component="pre">
-              {con.map((el, i) => {
-                if (i % 2 === 1) {
-                  return (
-                    <CodeEditor
-                      key={i}
-                      value={el}
-                      language={language}
-                      placeholder="Please enter code."
-                      padding={15}
-                      style={{
-                        fontSize: 12,
-                        backgroundColor: "#f5f5f5",
-                        fontFamily:
-                          "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
-                      }}
-                    ></CodeEditor>
-                  );
-                } else {
-                  return <Typography key={i}> {el} </Typography>;
-                }
-              })}
-            </Box>
-          </Box>
-
-          <Button variant="contained">ERROR REPORT</Button>
+          <Typography>ERROR REPORT</Typography>
         </Stack>
-      </Box>
+
+        <TextField
+          id="outlined-password-input"
+          label="ERROR TITLE"
+          placeholder="제목을 입력해주세요"
+          autoComplete="current-password"
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+        />
+
+        <TextField
+          id="outlined-textarea"
+          label="ERROR CONTENT"
+          placeholder="본문을 입력해주세요"
+          inputRef={contentsRef}
+          multiline
+          onChange={(e) => {
+            setContents(e.target.value);
+          }}
+        />
+        <Stack direction="row" spacing={2}>
+          <Button onClick={setCode} variant="contained">
+            CODE
+          </Button>
+          <FormControl sx={{ width: "200px" }}>
+            <InputLabel id="demo-simple-select-label">language</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={language}
+              label="language"
+              onChange={(e) => languageSelect(e.target.value)}
+            >
+              <MenuItem value="js">javascript</MenuItem>
+              <MenuItem value="java">java</MenuItem>
+              <MenuItem value="python">python</MenuItem>
+              <MenuItem value="css">css</MenuItem>
+              <MenuItem value="html">html</MenuItem>
+            </Select>
+          </FormControl>
+        </Stack>
+
+        <Typography>PREVIEW</Typography>
+        <Box
+          sx={{
+            border: "1px solid rgb(200,200,200)",
+            borderRadius: "5px",
+            padding: "15px",
+          }}
+        >
+          <Box component="h2">{title}</Box>
+          <Box whiteSpace="pre-wrap" component="pre">
+            {con.map((el, i) => {
+              if (i % 2 === 1) {
+                return (
+                  <CodeEditor
+                    key={i}
+                    value={el}
+                    language={language}
+                    placeholder="Please enter code."
+                    padding={15}
+                    style={{
+                      fontSize: 12,
+                      backgroundColor: "#f5f5f5",
+                      fontFamily:
+                        "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
+                    }}
+                  ></CodeEditor>
+                );
+              } else {
+                return <Typography key={i}> {el} </Typography>;
+              }
+            })}
+          </Box>
+        </Box>
+
+        <div className="tagWrap">
+          <Stack direction="row" display="inline-block">
+            {tag.map((el, i) => {
+              return (
+                <Chip
+                  key={i}
+                  size="small"
+                  label={el}
+                  onDelete={() => {
+                    delTag(i);
+                  }}
+                />
+              );
+            })}
+            <input
+              onKeyPress={(e) => {
+                putTag(e);
+              }}
+              placeholder="태그를 입력해주세요"
+              className="tagInput"
+            ></input>
+          </Stack>
+        </div>
+
+        <Button onClick={setPost} variant="contained">
+          ERROR REPORT
+        </Button>
+      </Stack>
     </Container>
   );
 };

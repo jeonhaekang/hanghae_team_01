@@ -55,7 +55,7 @@ const Card = (props) => {
               {userInfo.username}
             </Typography>
             <Typography fontSize={23} color="primary">
-              {postLanguage === "javascript" ? <DiJsBadge /> : ""}
+              {postLanguage === "js" ? <DiJsBadge /> : ""}
               {postLanguage === "css" ? <DiCss3 /> : ""}
               {postLanguage === "html" ? <DiHtml5 /> : ""}
               {postLanguage === "java" ? <DiJava /> : ""}
