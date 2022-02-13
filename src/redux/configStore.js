@@ -5,12 +5,14 @@ import { connectRouter } from "connected-react-router";
 
 import user from "./modules/user";
 import post from "./modules/post";
+import comment from "./modules/comment";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   // 모듈 적어주세요.
   user,
+  comment,
   post,
   router: connectRouter(history),
 });
@@ -21,10 +23,10 @@ const middlewares = [thunk.withExtraArgument({ history: history })];
 const env = process.env.NODE_ENV;
 
 // 개발환경에서는 로거라는 걸 하나만 더 써볼게요.
-if (env === "development") {
-  const { logger } = require("redux-logger");
-  middlewares.push(logger);
-}
+// if (env === "development") {
+//   const { logger } = require("redux-logger");
+//   middlewares.push(logger);
+// }
 
 // DevTool사용 설정
 const composeEnhancers =

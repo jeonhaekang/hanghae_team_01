@@ -1,53 +1,88 @@
 import React from "react";
-import { Typography, Card, CardContent, Button, Box } from "@mui/material";
+import CodeEditor from "@uiw/react-textarea-code-editor";
+import {
+  IoIosHelpCircleOutline,
+  IoMdInformationCircleOutline,
+} from "react-icons/io";
+import {
+  Typography,
+  Box,
+} from "@mui/material";
 import CommentWrite from "../components/CommentWrite";
 import CommentList from "../components/CommentList";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const Detail = (props) => {
-  return (
-    <React.Fragment>
-      {/* 중앙 정렬*/}
-      <Box
-        sx={{ display: "flex", justifyContent: "center", marginTop: "100px" }}
-      >
-        <Card sx={{ minWidth: "1000px", minHeight: "500px" }}>
-          <CardContent>
-            <div style={{ fontSize: "30px" }}>
-              {props.postTitle}
-              <Button
-                variant="outlined"
-                sx={{ marginRight: "20px", marginLeft: "600px" }}
-              >
-                수정
-              </Button>
-              <Button variant="outlined">삭제</Button>
-            </div>
-            <br />
-            <Typography variant="body2">
-              {props.postContents}
-              <br />
-            </Typography>
-            <Stack direction="row" spacing={1} sx={{ marginTop: "350px" }}>
-              <Chip label={props.postTag[0]} />
-              <Chip label={props.postTag[1]} />
-            </Stack>
-          </CardContent>
-        </Card>
-      </Box>
-      <CommentWrite />
-      <CommentList />
-    </React.Fragment>
+  const params = useParams();
+  const post = useSelector((state) => state.post.list).find(
+    (el) => el.postId === parseInt(params.postId)
   );
-};
 
-Detail.defaultProps = {
-  postTitle: "javascript error",
-  postContents: "content",
-  postLanguage: "javascript",
-  postTag: ["code", "check"],
-  postProblem: false,
+  const contents = post.postContents.split("``");
+
+
+  return (
+    <Stack spacing={2} sx={{ paddingTop: "100px" }}>
+      <Stack direction="row">
+        <Typography variant="h5" color="error">
+          <IoIosHelpCircleOutline />
+        </Typography>
+        <Typography>QUESTION</Typography>
+      </Stack>
+      <Box
+        border="1px solid rgb(200,200,200)"
+        borderRadius="5px"
+        padding="15px"
+      >
+        <Box component="h2">{post.postTitle}</Box>
+        <Box whiteSpace="pre-wrap" component="pre">
+          {contents.map((el, i) => {
+            if (i % 2 === 1) {
+              return (
+                <CodeEditor
+                  key={i}
+                  value={el}
+                  language={post.postLanguage}
+                  placeholder="Please enter code."
+                  padding={15}
+                  style={{
+                    fontSize: 12,
+                    backgroundColor: "#f5f5f5",
+                    fontFamily:
+                      "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
+                  }}
+                ></CodeEditor>
+              );
+            } else {
+              return <Typography key={i}> {el} </Typography>;
+            }
+          })}
+        </Box>
+        <Box border="1px solid #E7EBF0" padding="15px">
+          <Stack direction="row" spacing={1}>
+            {post.postTag.map((el, i) => {
+              return <Chip key={i} size="small" label={el} />;
+            })}
+          </Stack>
+        </Box>
+      </Box>
+
+      <Stack direction="row">
+        <Typography variant="h5" color="green">
+          <IoMdInformationCircleOutline />
+        </Typography>
+        <Typography>ANSWER</Typography>
+      </Stack>
+      <CommentWrite {...post} postId={params.postId} />
+
+      <Box>
+        <CommentList postId={params.postId} />
+      </Box>
+    </Stack>
+  );
 };
 
 export default Detail;
