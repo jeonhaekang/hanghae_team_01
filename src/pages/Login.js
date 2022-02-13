@@ -25,7 +25,7 @@ const Login = (props) => {
       return;
     }
     if(!pwdCheck(pwd)){
-      window.alert('이메일 형식이 맞지 않습니다!');
+      window.alert('패스워스 형식이 맞지 않습니다!');
       return;
     }
     dispatch(userActions.loginAction(id, pwd));
