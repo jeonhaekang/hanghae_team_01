@@ -35,7 +35,12 @@ const Signup = (props) => {
       password: pwd,
       passwordCheck: pwd_check,
     };
+
     dispatch(userActions.signupBE(post));
+  };
+
+  const idCheck = () => {
+    dispatch(userActions.idCheckBE(id));
   };
 
   return (
@@ -68,6 +73,7 @@ const Signup = (props) => {
           <Button
             variant="outlined"
             sx={{ marginTop: "80px", marginLeft: "20px" }}
+            onClick={idCheck}
           >
             확인
           </Button>

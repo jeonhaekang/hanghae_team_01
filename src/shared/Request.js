@@ -13,15 +13,10 @@ instance.interceptors.request.use((config) => {
 });
 
 const apis = {
-  signup: (post) =>
-    instance
-      .post("/user/signup", post)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      }),
+  signup: (post) => instance.post("/user/signup", post),
+  idCheck: (id) => instance.post("/user/idCheck", { username: id }),
+  login: (id, pwd) =>
+    instance.post("/user/login", { username: id, password: pwd }),
 };
 
 export default apis;
