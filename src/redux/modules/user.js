@@ -25,12 +25,8 @@ const initialState = {
 //middleware actions
 const loginActionBE = (id, pwd) => {
   return function (dispatch, getState, { history }) {
-    const frm = new FormData();
-    frm.append("username", id);
-    frm.append("password", pwd);
-
     apis
-      .login(frm)
+      .login(id, pwd)
       .then((res) => {
         console.log("로그인 성공:", res);
       })
