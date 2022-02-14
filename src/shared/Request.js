@@ -1,4 +1,3 @@
-import { create } from "@mui/material/styles/createTransitions";
 import axios from "axios";
 
 const instance = axios.create({});

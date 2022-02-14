@@ -18,14 +18,14 @@ const idCheckBE = (id) => {
     apis
       .idCheck(id)
       .then((res) => {
-        console.log("통신 성공 : ", res.data.result);
+        console.log("통신 성공 : ", res);
         if (res.data.result) {
           alert("사용 가능한 아이디 입니다.");
         }
         dispatch(idCheck(true));
       })
       .catch((err) => {
-        console.log("통신 실패 : ", err.response.data.result);
+        console.log("통신 실패 : ", err.response);
         if (!err.response.data.result) {
           alert("중복된 아이디 입니다.");
         }

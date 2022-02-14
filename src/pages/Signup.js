@@ -19,8 +19,6 @@ const Signup = (props) => {
   const [pwd_check, setPwdCheck] = React.useState("");
   const state = useSelector((state) => !state.signup.state);
 
-  console.log(state);
-
   const signup = () => {
     if (id === "" || pwd === "") {
       window.alert("아이디, 패스워드, 닉네임을 모두 입력해주세요!");

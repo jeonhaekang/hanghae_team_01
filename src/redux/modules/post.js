@@ -2,6 +2,7 @@ import instance from "../../shared/Request";
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import { RESP } from "../../shared/response";
+import { getCookie } from "../../shared/Cookie";
 
 // action
 const LOAD_POSTS = "LOAD_POSTS";
@@ -31,7 +32,7 @@ const setPostsBE = (post) => {
   return async function (dispatch, getState, { history }) {
     const time = new Date().getTime();
     dispatch(setPosts({ ...post, postId: time }));
-    alert("게시물을 등록하였습니다.")
+    alert("게시물을 등록하였습니다.");
     history.replace("/");
   };
 };
