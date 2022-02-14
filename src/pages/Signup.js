@@ -1,17 +1,25 @@
 import React from "react";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import {
+  Button,
+  Box,
+  TextField,
+  Container,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 import { emailCheck, pwdCheck } from "../shared/common";
-import { actionCreators as userActions } from "../redux/modules/user";
-import { useDispatch } from "react-redux";
+import { signupActions } from "../redux/modules/signup";
+import { useDispatch, useSelector } from "react-redux";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
   const [pwd_check, setPwdCheck] = React.useState("");
+  const state = useSelector((state) => !state.signup.state);
+
+  console.log(state);
 
   const signup = () => {
     if (id === "" || pwd === "") {
@@ -36,83 +44,78 @@ const Signup = (props) => {
       passwordCheck: pwd_check,
     };
 
-    dispatch(userActions.signupBE(post));
+    dispatch(signupActions.signupBE(post));
+  };
+
+  const idChagne = (e) => {
+    setId(e.target.value);
+    dispatch(signupActions.idCheck(false));
   };
 
   const idCheck = () => {
-    dispatch(userActions.idCheckBE(id));
+    if (!emailCheck(id)) {
+      window.alert("이메일 형식이 맞지 않습니다!");
+      return;
+    }
+    dispatch(signupActions.idCheckBE(id));
   };
 
   return (
-    <React.Fragment>
-      {/* 중앙 정렬*/}
-      <Box
-        sx={{ display: "flex", justifyContent: "center", marginTop: "100px" }}
-      >
-        {/* 회원가입 박스*/}
-        <Box
-          sx={{
-            width: 400,
-            height: 550,
-            border: "3px solid #E7EBF0",
-            textAlign: "center",
-          }}
-        >
-          <h2>회원가입</h2>
-          {/* email input*/}
+    <Container
+      sx={{
+        borderLeft: "1px solid #E7EBF0",
+        borderRight: "1px solid #E7EBF0",
+        height: "100%",
+        minHeight: "100vh",
+      }}
+    >
+      <Stack spacing={3} sx={{ paddingTop: "100px" }}>
+        <Typography>SIGNUP</Typography>
+
+        <Stack>
           <TextField
-            sx={{ marginTop: "70px" }}
-            id="standard-required"
-            defaultValue="Email"
-            variant="filled"
+            id="outlined-textarea"
+            label="USER ID"
+            placeholder="아이디를 입력해주세요."
             onChange={(e) => {
-              setId(e.target.value);
+              idChagne(e);
             }}
           />
-          {/* email 중복 check button*/}
-          <Button
-            variant="outlined"
-            sx={{ marginTop: "80px", marginLeft: "20px" }}
-            onClick={idCheck}
-          >
-            확인
-          </Button>
-          <br></br>
-          {/* passsward input*/}
+          <Typography variant="h7">
+            이메일 형식으로 아이디를 입력해주세요.
+          </Typography>
+        </Stack>
+        <Button variant="contained" onClick={idCheck}>
+          중복 확인
+        </Button>
+
+        <Stack>
           <TextField
-            sx={{ marginTop: "40px" }}
-            id="standard-required"
-            defaultValue="Password"
-            variant="filled"
+            id="outlined-textarea"
+            label="PASSWORD"
+            placeholder="비밀번호를 입력해주세요."
             onChange={(e) => {
               setPwd(e.target.value);
             }}
           />
-          <br></br>
-          {/* passswardcheck input*/}
-          <TextField
-            sx={{ marginTop: "40px" }}
-            id="standard-required"
-            defaultValue="PasswordCheck"
-            variant="filled"
-            onChange={(e) => {
-              setPwdCheck(e.target.value);
-            }}
-          />
-          <br></br>
-          {/* 회원가입 button*/}
-          <Button
-            variant="outlined"
-            onClick={() => {
-              signup();
-            }}
-            sx={{ marginTop: "70px" }}
-          >
-            회원가입
-          </Button>
-        </Box>
-      </Box>
-    </React.Fragment>
+          <Typography variant="h7">
+            비밀번호는 특수문자를 포함한 8자리 이상을 입력해주세요.
+          </Typography>
+        </Stack>
+        <TextField
+          id="outlined-textarea"
+          label="PASSWORD CHECK"
+          placeholder="비밀번호를 다시 입력해주세요."
+          onChange={(e) => {
+            setPwdCheck(e.target.value);
+          }}
+        />
+
+        <Button disabled={state} variant="contained" onClick={signup}>
+          회원가입
+        </Button>
+      </Stack>
+    </Container>
   );
 };
 

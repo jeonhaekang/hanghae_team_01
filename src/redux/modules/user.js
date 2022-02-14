@@ -23,41 +23,6 @@ const initialState = {
 };
 
 //middleware actions
-const idCheckBE = (id) => {
-  return function (dispatch, getState, { history }) {
-    console.log(id);
-    apis
-      .idCheck(id)
-      .then((res) => {
-        console.log("통신 성공 : ", res.data.result);
-        if (res.data.result) {
-          alert("사용 가능한 아이디 입니다.");
-        }
-      })
-      .catch((err) => {
-        console.log("통신 실패 : ", err.response.data.result);
-        if (!err.response.data.result) {
-          alert("중복된 아이디 입니다.");
-        }
-      });
-  };
-};
-
-const signupBE = (post) => {
-  return function (dispatch, getState, { history }) {
-    apis
-      .signup(post)
-      .then((res) => {
-        console.log(res);
-        alert("회원가입에 성공하였습니다.");
-        history.replace("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-};
-
 const loginActionBE = (id, pwd) => {
   return function (dispatch, getState, { history }) {
     apis
@@ -92,13 +57,11 @@ export default handleActions(
   initialState
 );
 
-const actionCreators = {
+const userActions = {
   userLogin,
   userLogout,
   getUser,
   loginActionBE,
-  signupBE,
-  idCheckBE,
 };
 
-export { actionCreators };
+export { userActions };

@@ -8,6 +8,7 @@ const instance = axios.create({
 instance.interceptors.request.use((config) => {
   config.headers["Content-Type"] =
     "application/json;charset=UTF-8; charset=UTF-8";
+    //"application/x-www-form-urlencoded; charset=UTF-8";
   //config.headers["authorization"] = ""
   return config;
 });
