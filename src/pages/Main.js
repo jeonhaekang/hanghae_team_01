@@ -20,7 +20,7 @@ const Main = (props) => {
         return (
           <Box
             onClick={() => {
-              history.push("/posts/" + el.postId);
+              history.push("/post/" + el.postId);
             }}
             key={i}
           >
@@ -28,7 +28,7 @@ const Main = (props) => {
           </Box>
         );
       })}
-      <button onClick={() => history.push("/posts")} className="postButton">
+      <button onClick={() => history.push("/post")} className="postButton">
         +
       </button>
     </Stack>

@@ -19,11 +19,11 @@ function App() {
       <Container maxWidth="lg">
         <ConnectedRouter history={history}>
           <Route path="/" exact component={Main} />
-          <Route path="/user/login" exact component={Login} />
-          <Route path="/user/signup" exact component={Signup} />
-          <Route path="/posts" exact component={Post} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/post" exact component={Post} />
           <Route path="/edit/:postId" exact component={Post} />
-          <Route path="/posts/:postId" exact component={Detail} />
+          <Route path="/post/:postId" exact component={Detail} />
         </ConnectedRouter>
       </Container>
     </React.Fragment>

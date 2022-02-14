@@ -4,13 +4,12 @@ import apis from "../../shared/Request";
 
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 
-const USER_LOGIN = "USER_LOGIN";
+const ID_CHECK = "ID_CHECK";
 
-const userLogin = createAction(USER_LOGIN, (user) => ({ user }));
+const idCheck = createAction(ID_CHECK, (state) => ({ state }));
 
 const initialState = {
-  user: null,
-  result: false,
+  state: false,
 };
 
 const idCheckBE = (id) => {
@@ -19,15 +18,17 @@ const idCheckBE = (id) => {
     apis
       .idCheck(id)
       .then((res) => {
+        console.log("통신 성공 : ", res.data.result);
         if (res.data.result) {
           alert("사용 가능한 아이디 입니다.");
         }
+        dispatch(idCheck(true));
       })
       .catch((err) => {
-        console.log(err.response);
-        // if (!err.response.data.result) {
-        //   alert("중복된 아이디 입니다.");
-        // }
+        console.log("통신 실패 : ", err.response.data.result);
+        if (!err.response.data.result) {
+          alert("중복된 아이디 입니다.");
+        }
       });
   };
 };
@@ -46,12 +47,21 @@ const signupBE = (post) => {
       });
   };
 };
+
+export default handleActions(
+  {
+    [ID_CHECK]: (state, action) =>
+      produce(state, (draft) => {
+        draft.state = action.payload.state;
+      }),
+  },
+  initialState
+);
+
 const signupActions = {
-  userLogin,
+  idCheck,
   signupBE,
   idCheckBE,
 };
-
-export default handleActions({}, initialState);
 
 export { signupActions };

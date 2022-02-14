@@ -5,7 +5,7 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import { history } from "../redux/configStore";
 import { Box, Button, Typography } from "@mui/material";
-import { actionCreators as userActions } from "../redux/modules/user";
+import { userActions } from "../redux/modules/user";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const Header = (props) => {
             </Typography>
             <Button
               onClick={() => {
-                history.push("/user/login");
+                history.push("/login");
               }}
               color="inherit"
             >
@@ -62,7 +62,7 @@ const Header = (props) => {
             </Button>
             <Button
               onClick={() => {
-                history.push("/user/signup");
+                history.push("/signup");
               }}
               color="inherit"
             >
