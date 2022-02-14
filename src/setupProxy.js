@@ -7,6 +7,9 @@ module.exports = function (app) {
     createProxyMiddleware({
       target: "http://3.39.0.192:8080", // server 주소를 넣어주면 된다.
       changeOrigin: true,
+      pathRewrite: {
+        "^/user": "", // 하위 url 초기화
+      },
     })
   );
 };
