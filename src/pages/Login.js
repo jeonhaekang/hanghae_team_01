@@ -41,7 +41,7 @@ const Login = (props) => {
           <h2>로그인</h2>
           {/* email input*/}
           <TextField
-            sx={{ paddingTop: '40px', }}
+            sx={{ paddingTop: '20px', }}
             id="standard-required"
             defaultValue={id}
             variant="filled"
@@ -49,10 +49,9 @@ const Login = (props) => {
               setId(e.target.value);
             }}
           />
-          <br></br>
+          <h5>이메일을 입력해주세요.</h5>
           {/* passsward input*/}
           <TextField
-            sx={{ paddingTop: '40px', }}
             id="standard-required"
             defaultValue={pwd}
             variant="filled"
@@ -60,13 +59,14 @@ const Login = (props) => {
               setPwd(e.target.value);
             }}
           />
+          <h5>회원가입을 입력해주세요</h5>
           <br></br>
           {/* 로그인 버튼*/}
           <Button variant="outlined"
             onClick={() => {login()}}
-            sx={{ marginTop: '40px', }}>로그인</Button>
+          >로그인</Button>
           {/* 회원 가입 버튼*/}
-          <Button variant="outlined" sx={{ marginTop: '40px', marginLeft: '20px', }}>회원가입</Button>
+          <Button variant="outlined" sx={{marginLeft: '20px', }}>회원가입</Button>
         </Box>
       </Box>
     </React.Fragment>
