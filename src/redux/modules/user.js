@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import instance from "../../shared/Request";
+import apis from "../../shared/Request";
 
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 import { RESP } from "../../shared/response";
@@ -25,9 +25,8 @@ const initialState = {
 //middleware actions
 const signupBE = (post) => {
   return function (dispatch, getState, { history }) {
-
-    instance
-      .post("/user/signup", post)
+    apis
+      .signup(post)
       .then((res) => {
         console.log(res);
       })
