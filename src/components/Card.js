@@ -3,7 +3,15 @@ import React from "react";
 import Divider from "@mui/material/Divider";
 
 import { DiJava, DiJsBadge, DiPython, DiCss3, DiHtml5 } from "react-icons/di";
-import { Card as CardBox, Box, CardContent, Chip, Stack, Typography } from "@mui/material";
+import {
+  Card as CardBox,
+  Box,
+  CardContent,
+  Chip,
+  Stack,
+  Typography,
+  Button,
+} from "@mui/material";
 
 const Card = (props) => {
   const {
@@ -17,7 +25,6 @@ const Card = (props) => {
   } = props;
 
   return (
-    
     <CardBox>
       <CardContent
         sx={{
@@ -50,10 +57,9 @@ const Card = (props) => {
             direction="row"
             divider={<Divider orientation="vertical" flexItem />}
             spacing={2}
+            alignContent="center"
           >
-            <Typography color="primary">
-              {userInfo.username}
-            </Typography>
+            <Typography color="primary">{userInfo.username}</Typography>
             <Typography fontSize={23} color="primary">
               {postLanguage === "js" ? <DiJsBadge /> : ""}
               {postLanguage === "css" ? <DiCss3 /> : ""}
@@ -61,14 +67,13 @@ const Card = (props) => {
               {postLanguage === "java" ? <DiJava /> : ""}
               {postLanguage === "python" ? <DiPython /> : ""}
             </Typography>
-            <Stack direction="row">
-              <Chip
-                color={postProblem ? "primary" : "error"}
-                size="small"
-                variant="outlined"
-                label={postProblem ? "FOUND" : "NOT FOUND"}
-              />
-            </Stack>
+            <Chip
+              color={postProblem ? "primary" : "error"}
+              size="small"
+              variant="outlined"
+              label={postProblem ? "FOUND" : "NOT FOUND"}
+            />
+            <Button variant="contained">삭제</Button>
           </Stack>
         </Box>
         <div className="cardContents">{postContents}</div>

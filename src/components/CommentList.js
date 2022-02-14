@@ -28,7 +28,7 @@ const CommentList = (props) => {
         const con = el.commentContent.split("``");
         console.log(el);
         return (
-          <Box position="relative">
+          <Box key={i} position="relative">
             <Card key={i}>
               <Box position="absolute" right="0">
                 <Button color="error">삭제</Button>
@@ -58,7 +58,7 @@ const CommentList = (props) => {
                       ></CodeEditor>
                     );
                   } else {
-                    return <Typography key={i}> {el} </Typography>;
+                    return <Typography> {el} </Typography>;
                   }
                 })}
               </CardContent>

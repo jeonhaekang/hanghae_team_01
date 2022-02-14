@@ -5,6 +5,7 @@ import { history } from "../redux/configStore";
 import { postActions } from "../redux/modules/post";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Stack } from "@mui/material";
+import Permit from "../shared/Permit";
 
 const Main = (props) => {
   const dispatch = useDispatch();
@@ -28,9 +29,11 @@ const Main = (props) => {
           </Box>
         );
       })}
-      <button onClick={() => history.push("/post")} className="postButton">
-        +
-      </button>
+      <Permit>
+        <button onClick={() => history.push("/post")} className="postButton">
+          +
+        </button>
+      </Permit>
     </Stack>
   );
 };

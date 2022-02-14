@@ -1,9 +1,6 @@
-import instance from "../../shared/Request";
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
-import { RESP } from "../../shared/response";
-import { getCookie } from "../../shared/Cookie";
-import apis from "../../shared/Request";
+import apis from "../../shared/apis";
 
 // action
 const LOAD_POSTS = "LOAD_POSTS";
@@ -35,15 +32,14 @@ const setPostsBE = (post) => {
     apis
       .post(post)
       .then((res) => {
-        console.log("성공", res);
+        console.log(res);
+        //dispatch(setPosts({ ...post, postId: time }));
+        //alert("게시물을 등록하였습니다.");
+        //history.replace("/");
       })
       .catch((err) => {
-        console.log("실패:", err);
+        console.log("실패 : ", err);
       });
-    //const time = new Date().getTime();
-    //dispatch(setPosts({ ...post, postId: time }));
-    //alert("게시물을 등록하였습니다.");
-    //history.replace("/");
   };
 };
 

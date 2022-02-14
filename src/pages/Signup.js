@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Box,
-  TextField,
-  Container,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Button, TextField, Container, Stack, Typography } from "@mui/material";
 
 import { emailCheck, pwdCheck } from "../shared/common";
 import { signupActions } from "../redux/modules/signup";
@@ -72,7 +65,7 @@ const Signup = (props) => {
 
         <Stack>
           <TextField
-            id="outlined-textarea"
+            id="outlined-id-input"
             label="USER ID"
             placeholder="아이디를 입력해주세요."
             onChange={(e) => {
@@ -89,24 +82,26 @@ const Signup = (props) => {
 
         <Stack>
           <TextField
-            id="outlined-textarea"
+            id="outlined-password-input"
             label="PASSWORD"
             placeholder="비밀번호를 입력해주세요."
             onChange={(e) => {
               setPwd(e.target.value);
             }}
+            type="password"
           />
           <Typography variant="h7">
             비밀번호는 특수문자를 포함한 8자리 이상을 입력해주세요.
           </Typography>
         </Stack>
         <TextField
-          id="outlined-textarea"
+          id="outlined-check-input"
           label="PASSWORD CHECK"
           placeholder="비밀번호를 다시 입력해주세요."
           onChange={(e) => {
             setPwdCheck(e.target.value);
           }}
+          type="password"
         />
 
         <Button disabled={state} variant="contained" onClick={signup}>

@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import apis from "../../shared/Request";
+import apis from "../../shared/apis";
 
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 

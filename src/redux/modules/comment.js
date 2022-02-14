@@ -1,7 +1,6 @@
-import instance from "../../shared/Request";
+import instance from "../../shared/apis";
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
-import { RESP } from "../../shared/response";
 
 // action
 const LOAD_COMMENT = "LOAD_COMMENT";

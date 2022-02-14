@@ -9,70 +9,56 @@ import { userActions } from "../redux/modules/user";
 
 const Header = (props) => {
   const dispatch = useDispatch();
-  const result = useSelector((state) => state.user.result);
+  const is_login = useSelector((state) => state.user.is_login);
 
-
-  if (result) {
-    return (
-      <Box sx={{ position: "fixid", left: 0, top: 0 }}>
-        <AppBar>
-          <Toolbar>
-            <Typography
-              onClick={() => {
-                history.push("/");
-              }}
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1 }}
-            >
-              404 Found
-            </Typography>
-            <Button
-              color="inherit"
-              onClick={() => {dispatch(userActions.userLogout({}));}}
-            >
-              LogOut
-            </Button>
-          </Toolbar>
-        </AppBar>
-      </Box>
-    )
+  const logout = () => {
+    dispatch(userActions.logoutBE());
   };
-    return (
-      <Box sx={{ position: "fixid", left: 0, top: 0 }}>
-        <AppBar>
-          <Toolbar>
-            <Typography
-              onClick={() => {
-                history.push("/");
-              }}
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1 }}
-            >
-              404 Found
-            </Typography>
-            <Button
-              onClick={() => {
-                history.push("/login");
-              }}
-              color="inherit"
-            >
-              Login
-            </Button>
-            <Button
-              onClick={() => {
-                history.push("/signup");
-              }}
-              color="inherit"
-            >
-              Signup
-            </Button>
-          </Toolbar>
-        </AppBar>
-      </Box>
-    );
-}
 
+  return (
+    <Box sx={{ position: "fixid", left: 0, top: 0 }}>
+      <AppBar>
+        <Toolbar>
+          <Typography
+            onClick={() => {
+              history.push("/");
+            }}
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+          >
+            404 Found
+          </Typography>
+          {!is_login ? (
+            // 비로그인 상태 헤더F
+            <Box>
+              <Button
+                onClick={() => {
+                  history.push("/login");
+                }}
+                color="inherit"
+              >
+                Login
+              </Button>
+              <Button
+                onClick={() => {
+                  history.push("/signup");
+                }}
+                color="inherit"
+              >
+                Signup
+              </Button>
+            </Box>
+          ) : (
+            // 로그인 상태 헤더
+            <Button onClick={logout} color="inherit">
+              LOGOUT
+            </Button>
+          )}
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
+};
 
 export default Header;

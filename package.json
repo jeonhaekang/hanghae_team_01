@@ -14,7 +14,6 @@
     "connected-react-router": "6.8.0",
     "global": "^4.4.0",
     "history": "4.10.1",
-    "http-proxy-middleware": "^2.0.3",
     "immer": "^9.0.12",
     "moment": "^2.29.1",
     "react": "^17.0.2",

@@ -1,81 +1,70 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import apis from "../../shared/Request";
+import apis from "../../shared/apis";
 
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 
 //actions
-const USER_LOGIN = "USER_LOGIN";
-const USER_LOGOUT = "USER_LOGOUT";
-const GET_USER = "GET_USER";
-const IS_LOGIN = "IS_LOGIN";
+const SET_USER = "SET_USER";
+const LOGOUT = "LOGOUT";
 
 //action creators
-const userLogin = createAction(USER_LOGIN, (user) => ({ user }));
-const userLogout = createAction(USER_LOGOUT, (user) => ({ user }));
-const getUser = createAction(GET_USER, (user) => ({ user }));
-const isLogin = createAction(IS_LOGIN, (state) => ({ state }));
+const setUser = createAction(SET_USER, (username) => ({ username }));
+const logout = createAction(LOGOUT, () => ({}));
 
 //middleware actions
 const initialState = {
   user: null,
-  result: false,
+  username: "",
   is_login: false,
 };
 
 //middleware actions
 const loginActionBE = (id, pwd) => {
   return function (dispatch, getState, { history }) {
-    const frm = new FormData();
-    frm.append("username", id);
-    frm.append("password", pwd);
+    const data = {
+      username: id,
+      password: pwd,
+    };
 
     apis
-      .login(frm)
+      .login(data)
       .then((res) => {
-        const userInfo = res.data.data.userInfo;
-        // setCookie("username", userInfo.username);
-        // setCookie("userId", userInfo.userId);
-        // setCookie("is_login", true);
-        dispatch(isLogin(true));
+        const token = res.headers.authorization;
+        setCookie(token);
+        dispatch(setUser(id));
         history.replace("/");
       })
       .catch((err) => {
-        console.log("로그인 실패:", err);
+        console.log("실패 : ", err);
       });
-    //dispatch(userLogin(user));
-    //history.push("/");
+  };
+};
+
+const logoutBE = () => {
+  return function (dispatch, getState, { history }) {
+    dispatch(logout());
   };
 };
 
 export default handleActions(
   {
-    [USER_LOGIN]: (state, action) =>
+    [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        setCookie("result", "success");
-        draft.user = action.payload.user;
-        draft.result = true;
+        draft.username = action.payload.username;
+        draft.is_login = true;
       }),
-    [USER_LOGOUT]: (state, action) =>
+    [LOGOUT]: (state, action) =>
       produce(state, (draft) => {
-        deleteCookie("result");
-        draft.user = null;
-        draft.result = false;
+        draft.is_login = false;
       }),
-    [IS_LOGIN]: (state, action) =>
-      produce(state, (draft) => {
-        draft.is_login = action.payload.state;
-      }),
-    [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
 );
 
 const userActions = {
-  userLogin,
-  userLogout,
-  getUser,
   loginActionBE,
+  logoutBE,
 };
 
 export { userActions };
