@@ -1,23 +1,18 @@
+import { create } from "@mui/material/styles/createTransitions";
 import axios from "axios";
 
-const instance = axios.create({
-  baseURL: "http://3.39.0.192:8080",
-});
+const instance = axios.create({});
 
-//instance.defaults.headers.common["Authorization"] = "dd";
 instance.interceptors.request.use((config) => {
   config.headers["Content-Type"] =
     "application/json;charset=UTF-8; charset=UTF-8";
-    //"application/x-www-form-urlencoded; charset=UTF-8";
-  //config.headers["authorization"] = ""
   return config;
 });
 
 const apis = {
   signup: (post) => instance.post("/user/signup", post),
   idCheck: (id) => instance.post("/user/idCheck", { username: id }),
-  login: (id, pwd) =>
-    instance.post("/user/login", { username: id, password: pwd }),
+  login: (frm) => instance.post("/user/login", frm, { withCredentials: true }),
 };
 
 export default apis;
