@@ -1,7 +1,12 @@
 import React from "react";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import {
+  Button,
+  Box,
+  TextField,
+  Container,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 import { emailCheck, pwdCheck } from "../shared/common";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -44,75 +49,60 @@ const Signup = (props) => {
   };
 
   return (
-    <React.Fragment>
-      {/* 중앙 정렬*/}
-      <Box
-        sx={{ display: "flex", justifyContent: "center", marginTop: "100px" }}
-      >
-        {/* 회원가입 박스*/}
-        <Box
-          sx={{
-            width: 400,
-            height: 550,
-            border: "3px solid #E7EBF0",
-            textAlign: "center",
+    <Container
+      sx={{
+        borderLeft: "1px solid #E7EBF0",
+        borderRight: "1px solid #E7EBF0",
+        height: "100%",
+        minHeight: "100vh",
+      }}
+    >
+      <Stack spacing={3} sx={{ paddingTop: "100px" }}>
+        <Typography>SIGNUP</Typography>
+        <TextField
+          id="outlined-textarea"
+          label="USER ID"
+          placeholder="아이디를 입력해주세요."
+          onChange={(e) => {
+            setId(e.target.value);
           }}
+        />
+        <Button
+          variant="outlined"
+          sx={{ marginTop: "80px", marginLeft: "20px" }}
+          onClick={idCheck}
         >
-          <h2>회원가입</h2>
-          {/* email input*/}
-          <TextField
-            sx={{ marginTop: "70px" }}
-            id="standard-required"
-            defaultValue="Email"
-            variant="filled"
-            onChange={(e) => {
-              setId(e.target.value);
-            }}
-          />
-          {/* email 중복 check button*/}
-          <Button
-            variant="outlined"
-            sx={{ marginTop: "80px", marginLeft: "20px" }}
-            onClick={idCheck}
-          >
-            확인
-          </Button>
-          <br></br>
-          {/* passsward input*/}
-          <TextField
-            sx={{ marginTop: "40px" }}
-            id="standard-required"
-            defaultValue="Password"
-            variant="filled"
-            onChange={(e) => {
-              setPwd(e.target.value);
-            }}
-          />
-          <br></br>
-          {/* passswardcheck input*/}
-          <TextField
-            sx={{ marginTop: "40px" }}
-            id="standard-required"
-            defaultValue="PasswordCheck"
-            variant="filled"
-            onChange={(e) => {
-              setPwdCheck(e.target.value);
-            }}
-          />
-          <br></br>
-          {/* 회원가입 button*/}
-          <Button
-            variant="outlined"
-            onClick={() => {
-              signup();
-            }}
-            sx={{ marginTop: "70px" }}
-          >
-            회원가입
-          </Button>
-        </Box>
-      </Box>
-    </React.Fragment>
+          확인
+        </Button>
+        <TextField
+          sx={{ marginTop: "40px" }}
+          id="standard-required"
+          defaultValue="Password"
+          variant="filled"
+          onChange={(e) => {
+            setPwd(e.target.value);
+          }}
+        />
+        <TextField
+          sx={{ marginTop: "40px" }}
+          id="standard-required"
+          defaultValue="PasswordCheck"
+          variant="filled"
+          onChange={(e) => {
+            setPwdCheck(e.target.value);
+          }}
+        />
+        <Button
+          variant="outlined"
+          onClick={() => {
+            signup();
+          }}
+          sx={{ marginTop: "70px" }}
+        >
+          회원가입
+        </Button>
+      </Stack>
+    </Container>
   );
 };
 
