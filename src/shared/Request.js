@@ -8,7 +8,6 @@ const instance = axios.create({
 instance.interceptors.request.use((config) => {
   config.headers["Content-Type"] =
     "application/json;charset=UTF-8; charset=UTF-8";
-    //"application/x-www-form-urlencoded; charset=UTF-8";
   //config.headers["authorization"] = ""
   return config;
 });
@@ -16,8 +15,8 @@ instance.interceptors.request.use((config) => {
 const apis = {
   signup: (post) => instance.post("/user/signup", post),
   idCheck: (id) => instance.post("/user/idCheck", { username: id }),
-  login: (id, pwd) =>
-    instance.post("/user/login", { username: id, password: pwd }),
+  login: (data) =>
+    instance.post("/user/login", data, { withCredentials: true }),
 };
 
 export default apis;
