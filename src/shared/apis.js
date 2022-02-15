@@ -8,7 +8,7 @@ const instance = axios.create({
 instance.interceptors.request.use(function (config) {
   const token = getCookie("authorization");
 
-  config.headers["Content-Type"] =
+  config.headers["Content-Type"] = 
     "application/json;charset=UTF-8; charset=UTF-8";
   config.headers.common["authorization"] = `${token}`;
   return config;
@@ -21,7 +21,10 @@ const apis = {
   getUser: () => instance.get("/user"),
   post: (post) => instance.post("/posts", post),
   postList: () => instance.get("/posts"),
-  getPost: (id) => instance.get("/posts/" + id),
+  getPost: (postId) => instance.get("/posts/" + postId),
+  delPost: (postId) => instance.delete("/posts/" + postId),
+  modifyPost: (postId, post, originTag) =>
+    instance.put("/posts/" + postId, { ...post, originTag: originTag }),
 };
 
 export default apis;

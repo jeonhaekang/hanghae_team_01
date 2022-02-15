@@ -85,10 +85,6 @@ const Post = (props) => {
     );
   }; // 태그 삭제
 
-  const textAreaTap = (e) => {
-    console.log(e.key);
-  };
-
   return (
     <Container
       sx={{
@@ -125,9 +121,6 @@ const Post = (props) => {
           multiline
           onChange={(e) => {
             setContents(e.target.value);
-          }}
-          onKeyDown={(e) => {
-            textAreaTap(e);
           }}
         />
         <Stack direction="row" spacing={2}>

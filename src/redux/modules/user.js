@@ -37,6 +37,8 @@ const loginActionBE = (id, pwd) => {
       })
       .catch((err) => {
         console.log("실패 : ", err.response);
+        alert(err.response.data.data.errors[0].message);
+        history.replace("/");
       });
   };
 };
@@ -50,7 +52,9 @@ const getUserBE = () => {
         dispatch(setUser(res.data.data));
       })
       .catch((err) => {
-        console.log(err.response);
+        console.log("실패 : ", err.response);
+        alert(err.response.data.data.errors[0].message);
+        history.replace("/");
       });
   };
 };

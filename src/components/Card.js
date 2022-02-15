@@ -14,10 +14,13 @@ import {
   ButtonGroup,
   CardActions,
 } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configStore";
+import { postActions } from "../redux/modules/post";
 
 const Card = (props) => {
+  const dispatch = useDispatch();
+
   const {
     postContents,
     postId,
@@ -31,6 +34,12 @@ const Card = (props) => {
   const user = useSelector((state) => state.user.user);
   const nickName = userInfo.username.split("@")[0];
   const contents = postContents.split("``");
+
+  const delPost = () => {
+    if (user?.username === userInfo.username) {
+      dispatch(postActions.delPostsBE(postId));
+    }
+  };
 
   return (
     <CardBox>
@@ -118,8 +127,19 @@ const Card = (props) => {
       {user?.username === userInfo.username ? (
         <CardActions>
           <ButtonGroup>
-            <Button variant="text">수정</Button>
-            <Button variant="text" color="error">
+            <Button
+              variant="text"
+              onClick={() => history.push("/edit/" + postId)}
+            >
+              수정
+            </Button>
+            <Button
+              onClick={() => {
+                delPost();
+              }}
+              variant="text"
+              color="error"
+            >
               삭제
             </Button>
           </ButtonGroup>

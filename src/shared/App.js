@@ -8,7 +8,7 @@ import { postActions } from "../redux/modules/post";
 import { userActions } from "../redux/modules/user";
 
 // page/index
-import { Detail, Login, Main, Post, Signup } from "../pages/Index";
+import { Detail, Login, Main, Post, Signup, Edit } from "../pages/Index";
 
 // shared/index
 import { Header } from "./Index";
@@ -34,11 +34,17 @@ function App() {
       <Header />
       <Container maxWidth="lg">
         <ConnectedRouter history={history}>
+          {/* 메인 */}
           <Route path="/" exact component={Main} />
+          {/* 로그인 */}
           <Route path="/login" exact component={Login} />
+          {/* 회원가입 */}
           <Route path="/signup" exact component={Signup} />
+          {/* 게시글 작성 */}
           <Route path="/post" exact component={Post} />
-          <Route path="/edit/:postId" exact component={Post} />
+          {/* 게시글 수정 */}
+          <Route path="/edit/:postId" exact component={Edit} />
+          {/* 상세 페이지 */}
           <Route path="/post/:postId" exact component={Detail} />
         </ConnectedRouter>
       </Container>
