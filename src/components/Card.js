@@ -24,6 +24,8 @@ const Card = (props) => {
     userInfo,
   } = props;
 
+  const contents = postContents.split("``");
+
   return (
     <CardBox>
       <CardContent
@@ -76,7 +78,13 @@ const Card = (props) => {
             <Button variant="contained">삭제</Button>
           </Stack>
         </Box>
-        <div className="cardContents">{postContents}</div>
+        <div className="cardContents">
+          {contents.filter((el, i) => {
+            if (i % 2 === 0) {
+              return true;
+            }
+          })}
+        </div>
       </CardContent>
       <CardContent>
         <Stack direction="row" spacing={1}>

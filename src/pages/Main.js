@@ -8,12 +8,7 @@ import { Box, Stack } from "@mui/material";
 import Permit from "../shared/Permit";
 
 const Main = (props) => {
-  const dispatch = useDispatch();
   const postList = useSelector((state) => state.post.list);
-
-  React.useEffect(() => {
-    dispatch(postActions.loadPostBE());
-  }); // 최소 렌더링시 리덕스에 서버데이터 갱신
 
   return (
     <Stack spacing={3} sx={{ paddingTop: "100px" }}>

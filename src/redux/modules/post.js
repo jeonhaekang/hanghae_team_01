@@ -17,14 +17,30 @@ const setPosts = createAction(SET_POSTS, (post) => ({ post }));
 // middlewares
 const loadPostBE = () => {
   return async function (dispatch, getState, { history }) {
-    // instance
-    //   .get("/posts/list")
-    //   .then(() => {})
-    //   .catch(() => {});
-    //const postList = RESP.POSTS_LIST;
-    //dispatch(loadPosts(postList.postList)); // redux에 서버에서 가져온 리스트 추가
+    apis
+      .postList()
+      .then((res) => {
+        const postList = res.data.data.postList;
+        dispatch(loadPosts(postList)); // redux에 서버에서 가져온 리스트 추가
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   };
 }; // 서버에서 게시물 리스트 가져옴
+
+const getPostBE = (postId) => {
+  return async function (dispatch, getState, { history }) {
+    apis
+      .getPost(postId)
+      .then((res) => {
+        dispatch(loadPosts([res.data.data]));
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+};
 
 const setPostsBE = (post) => {
   return async function (dispatch, getState, { history }) {
@@ -33,12 +49,12 @@ const setPostsBE = (post) => {
       .post(post)
       .then((res) => {
         console.log(res);
-        //dispatch(setPosts({ ...post, postId: time }));
-        //alert("게시물을 등록하였습니다.");
-        //history.replace("/");
+        dispatch(setPosts({ ...post, postId: res.data.data.postId }));
+        alert("게시물을 등록하였습니다.");
+        history.replace("/");
       })
       .catch((err) => {
-        console.log("실패 : ", err);
+        console.log("실패 : ", err.response);
       });
   };
 };
@@ -61,6 +77,7 @@ export default handleActions(
 const postActions = {
   loadPostBE,
   setPostsBE,
+  getPostBE,
 };
 
 export { postActions };

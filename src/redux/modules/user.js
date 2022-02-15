@@ -9,13 +9,12 @@ const SET_USER = "SET_USER";
 const LOGOUT = "LOGOUT";
 
 //action creators
-const setUser = createAction(SET_USER, (username) => ({ username }));
+const setUser = createAction(SET_USER, (user) => ({ user }));
 const logout = createAction(LOGOUT, () => ({}));
 
 //middleware actions
 const initialState = {
   user: null,
-  username: "",
   is_login: false,
 };
 
@@ -32,7 +31,7 @@ const loginActionBE = (id, pwd) => {
       .then((res) => {
         const token = res.headers.authorization;
         setCookie(token);
-        dispatch(setUser(id));
+        dispatch(setUser(res.data.data));
         history.replace("/");
       })
       .catch((err) => {
@@ -41,9 +40,24 @@ const loginActionBE = (id, pwd) => {
   };
 };
 
+const loginCheckBE = () => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .loginCheck()
+      .then((res) => {
+        console.log(res);
+        dispatch(setUser(res.data.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 const logoutBE = () => {
   return function (dispatch, getState, { history }) {
     dispatch(logout());
+    deleteCookie("authorization");
   };
 };
 
@@ -51,7 +65,7 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        draft.username = action.payload.username;
+        draft.user = action.payload.user;
         draft.is_login = true;
       }),
     [LOGOUT]: (state, action) =>
@@ -64,6 +78,7 @@ export default handleActions(
 
 const userActions = {
   loginActionBE,
+  loginCheckBE,
   logoutBE,
 };
 
