@@ -31,26 +31,27 @@ const loginActionBE = (id, pwd) => {
       .then((res) => {
         const token = res.headers.authorization;
         setCookie(token);
+
         dispatch(setUser(res.data.data));
         history.replace("/");
       })
       .catch((err) => {
-        console.log("실패 : ", err);
+        console.log("실패 : ", err.response);
       });
   };
 };
 
-const loginCheckBE = () => {
+const getUserBE = () => {
   return function (dispatch, getState, { history }) {
-    apis
-      .loginCheck()
-      .then((res) => {
-        console.log(res);
-        dispatch(setUser(res.data.data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // apis
+    //   .loginCheck()
+    //   .then((res) => {
+    //     console.log(res);
+    //     dispatch(setUser(res.data.data));
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.response);
+    //   });
   };
 };
 
@@ -78,7 +79,7 @@ export default handleActions(
 
 const userActions = {
   loginActionBE,
-  loginCheckBE,
+  getUserBE,
   logoutBE,
 };
 

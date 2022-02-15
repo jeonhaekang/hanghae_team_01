@@ -2,7 +2,6 @@ import React from "react";
 
 import Card from "../components/Card";
 import { history } from "../redux/configStore";
-import { postActions } from "../redux/modules/post";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Stack } from "@mui/material";
 import Permit from "../shared/Permit";

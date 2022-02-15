@@ -10,10 +10,10 @@ import {
   Chip,
   Stack,
   Typography,
-  Button,
 } from "@mui/material";
 
 const Card = (props) => {
+  //console.log(props);
   const {
     postContents,
     postId,
@@ -23,6 +23,8 @@ const Card = (props) => {
     postTitle,
     userInfo,
   } = props;
+
+  const nickName = userInfo.username.split("@")[0];
 
   const contents = postContents.split("``");
 
@@ -34,34 +36,30 @@ const Card = (props) => {
           borderBottom: "1px solid #E7EBF0",
         }}
       >
-        <Typography
-          sx={{
-            whiteSpace: "nowrap",
-            width: "700px",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-          component="div"
-          variant="h6"
-          color="primary"
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          justifyContent="space-between"
         >
-          <Typography></Typography>
-          {postTitle}
-        </Typography>
-        <Box
-          sx={{
-            position: "absolute",
-            right: 10,
-            top: 10,
-          }}
-        >
+          <Typography
+            sx={{
+              whiteSpace: "nowrap",
+              width: "100%",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+            component="div"
+            variant="h6"
+            color="primary"
+          >
+            {postTitle}
+          </Typography>
           <Stack
             direction="row"
             divider={<Divider orientation="vertical" flexItem />}
             spacing={2}
             alignContent="center"
           >
-            <Typography color="primary">{userInfo.username}</Typography>
+            <Typography color="primary">{nickName}</Typography>
             <Typography fontSize={23} color="primary">
               {postLanguage === "js" ? <DiJsBadge /> : ""}
               {postLanguage === "css" ? <DiCss3 /> : ""}
@@ -75,9 +73,16 @@ const Card = (props) => {
               variant="outlined"
               label={postProblem ? "FOUND" : "NOT FOUND"}
             />
-            <Button variant="contained">삭제</Button>
           </Stack>
-        </Box>
+        </Stack>
+
+        <Box
+          sx={{
+            position: "absolute",
+            right: 10,
+            top: 10,
+          }}
+        ></Box>
         <div className="cardContents">
           {contents.filter((el, i) => {
             if (i % 2 === 0) {
@@ -87,9 +92,18 @@ const Card = (props) => {
         </div>
       </CardContent>
       <CardContent>
-        <Stack direction="row" spacing={1}>
+        <Stack direction="row" display="inline-block">
           {postTag.map((el, i) => {
-            return <Chip key={i} size="small" label={el} />;
+            return (
+              <Chip
+                sx={{
+                  marginRight: "10px",
+                }}
+                key={i}
+                size="small"
+                label={el}
+              />
+            );
           })}
         </Stack>
       </CardContent>

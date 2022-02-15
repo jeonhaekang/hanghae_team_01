@@ -44,12 +44,15 @@ const getPostBE = (postId) => {
 
 const setPostsBE = (post) => {
   return async function (dispatch, getState, { history }) {
-    console.log(post);
     apis
       .post(post)
       .then((res) => {
         console.log(res);
-        dispatch(setPosts({ ...post, postId: res.data.data.postId }));
+
+        const user = getState().user.user;
+        dispatch(
+          setPosts({ ...post, postId: res.data.data.postId, userInfo: user })
+        );
         alert("게시물을 등록하였습니다.");
         history.replace("/");
       })

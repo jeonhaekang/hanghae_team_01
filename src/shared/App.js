@@ -25,7 +25,7 @@ function App() {
     dispatch(postActions.loadPostBE());
 
     if (token && !user) {
-      dispatch(userActions.loginCheckBE());
+      //dispatch(userActions.loginCheckBE());
     }
   }); // 최소 렌더링시 리덕스에 서버데이터 갱신
 
