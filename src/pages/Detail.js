@@ -28,7 +28,7 @@ const Detail = (props) => {
       return;
     }
     dispatch(postActions.getPostBE(id));
-  }, []);
+  });
 
   return (
     <React.Fragment>
@@ -69,13 +69,12 @@ const Detail = (props) => {
                 }
               })}
             </Box>
-            <Box border="1px solid #E7EBF0" padding="15px">
-              <Stack direction="row" spacing={1}>
-                {post.postTag.map((el, i) => {
-                  return <Chip key={i} size="small" label={el} />;
-                })}
-              </Stack>
-            </Box>
+
+            <Stack direction="row" spacing={1}>
+              {post.postTag.map((el, i) => {
+                return <Chip key={i} size="small" label={el} />;
+              })}
+            </Stack>
           </Box>
 
           <Stack direction="row">

@@ -13,12 +13,7 @@ const Main = (props) => {
     <Stack spacing={3} sx={{ paddingTop: "100px" }}>
       {postList.map((el, i) => {
         return (
-          <Box
-            onClick={() => {
-              history.push("/post/" + el.postId);
-            }}
-            key={i}
-          >
+          <Box key={i}>
             <Card {...el} key={i}></Card>
           </Box>
         );

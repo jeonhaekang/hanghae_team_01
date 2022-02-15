@@ -18,14 +18,14 @@ import { getCookie } from "./Cookie";
 function App() {
   const user = useSelector((state) => state.user.user);
   const token = getCookie("authorization");
-  console.log("user : ", user, " token : ", token);
+  console.log("user : ", user);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(postActions.loadPostBE());
 
     if (token && !user) {
-      //dispatch(userActions.loginCheckBE());
+      dispatch(userActions.getUserBE());
     }
   }); // 최소 렌더링시 리덕스에 서버데이터 갱신
 

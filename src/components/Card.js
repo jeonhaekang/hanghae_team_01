@@ -10,10 +10,14 @@ import {
   Chip,
   Stack,
   Typography,
+  Button,
+  ButtonGroup,
+  CardActions,
 } from "@mui/material";
+import { useSelector } from "react-redux";
+import { history } from "../redux/configStore";
 
 const Card = (props) => {
-  //console.log(props);
   const {
     postContents,
     postId,
@@ -24,13 +28,16 @@ const Card = (props) => {
     userInfo,
   } = props;
 
+  const user = useSelector((state) => state.user.user);
   const nickName = userInfo.username.split("@")[0];
-
   const contents = postContents.split("``");
 
   return (
     <CardBox>
       <CardContent
+        onClick={() => {
+          history.push("/post/" + postId);
+        }}
         sx={{
           position: "relative",
           borderBottom: "1px solid #E7EBF0",
@@ -107,6 +114,19 @@ const Card = (props) => {
           })}
         </Stack>
       </CardContent>
+
+      {user?.username === userInfo.username ? (
+        <CardActions>
+          <ButtonGroup>
+            <Button variant="text">수정</Button>
+            <Button variant="text" color="error">
+              삭제
+            </Button>
+          </ButtonGroup>
+        </CardActions>
+      ) : (
+        ""
+      )}
     </CardBox>
   );
 };

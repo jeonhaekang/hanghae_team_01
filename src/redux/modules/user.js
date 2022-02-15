@@ -43,15 +43,15 @@ const loginActionBE = (id, pwd) => {
 
 const getUserBE = () => {
   return function (dispatch, getState, { history }) {
-    // apis
-    //   .loginCheck()
-    //   .then((res) => {
-    //     console.log(res);
-    //     dispatch(setUser(res.data.data));
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.response);
-    //   });
+    apis
+      .getUser()
+      .then((res) => {
+        console.log(res);
+        dispatch(setUser(res.data.data));
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   };
 };
 
@@ -72,6 +72,7 @@ export default handleActions(
     [LOGOUT]: (state, action) =>
       produce(state, (draft) => {
         draft.is_login = false;
+        draft.user = null;
       }),
   },
   initialState

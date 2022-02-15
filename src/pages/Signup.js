@@ -4,6 +4,7 @@ import { Button, TextField, Container, Stack, Typography } from "@mui/material";
 import { emailCheck, pwdCheck } from "../shared/common";
 import { signupActions } from "../redux/modules/signup";
 import { useDispatch, useSelector } from "react-redux";
+import _ from "lodash";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
@@ -11,6 +12,8 @@ const Signup = (props) => {
   const [pwd, setPwd] = React.useState("");
   const [pwd_check, setPwdCheck] = React.useState("");
   const state = useSelector((state) => !state.signup.state);
+
+  const idCheckText = React.useRef(null);
 
   const signup = () => {
     if (id === "" || pwd === "") {
@@ -72,7 +75,7 @@ const Signup = (props) => {
               idChagne(e);
             }}
           />
-          <Typography variant="h7">
+          <Typography variant="body1">
             이메일 형식으로 아이디를 입력해주세요.
           </Typography>
         </Stack>
