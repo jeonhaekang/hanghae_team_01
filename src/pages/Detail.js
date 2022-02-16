@@ -85,11 +85,11 @@ const Detail = (props) => {
             <Typography>ANSWER</Typography>
           </Stack>
           <Permit>
-            <CommentWrite {...post} postId={id} />
+            <CommentWrite {...post} language={post.postLanguage} postId={id} />
           </Permit>
 
           <Box>
-            <CommentList postId={id} />
+            <CommentList language={post.postLanguage} postId={id} />
           </Box>
         </Stack>
       )}

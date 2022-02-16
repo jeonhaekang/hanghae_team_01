@@ -67,22 +67,6 @@ const CommentWrite = (props) => {
         <Button onClick={setCode} variant="contained">
           CODE
         </Button>
-        <FormControl sx={{ width: "200px" }}>
-          <InputLabel id="demo-simple-select-label">language</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={language}
-            label="language"
-            onChange={(e) => languageSelect(e.target.value)}
-          >
-            <MenuItem value="js">javascript</MenuItem>
-            <MenuItem value="java">java</MenuItem>
-            <MenuItem value="python">python</MenuItem>
-            <MenuItem value="css">css</MenuItem>
-            <MenuItem value="html">html</MenuItem>
-          </Select>
-        </FormControl>
       </Stack>
       <Button onClick={setComment} variant="contained">
         ANSWER

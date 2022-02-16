@@ -5,6 +5,7 @@ import CommentCard from "./CommentCard";
 import { commentActions } from "../redux/modules/comment";
 
 const CommentList = (props) => {
+  const { language } = props;
   const { postId } = props;
   const dispatch = useDispatch();
   const commentList = useSelector((state) => state.comment.list);
@@ -22,7 +23,13 @@ const CommentList = (props) => {
         commentList[postId].commentList.map((el, i) => {
           console.log(el);
           return (
-            <CommentCard key={el.commentId} {...el} postId={postId} idx={i} />
+            <CommentCard
+              language={language}
+              key={el.commentId}
+              {...el}
+              postId={postId}
+              idx={i}
+            />
           );
         })}
     </Stack>

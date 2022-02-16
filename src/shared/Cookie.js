@@ -1,18 +1,17 @@
 const getCookie = (name) => {
   let value = "; " + document.cookie;
 
-  let parts = value.split("; " + name + "=");
+  let parts = value.split(`; ${name}=`);
 
   if (parts.length === 2) {
-    return parts.pop().split("; ").shift();
+    return parts.pop().split(";").shift();
   }
 };
 
 const setCookie = (token, exp = 5) => {
   let date = new Date();
-  date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
-
-  document.cookie = `authorization=${token}; expires=${date.toUTCString()}`;
+  date.setTime(date.getTime() + 1000 * 60 * 60 * 24 * exp);
+  document.cookie = `authorization=${token}; expires=${date}`;
 };
 
 const deleteCookie = (name) => {

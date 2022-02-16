@@ -12,7 +12,6 @@ import {
   Typography,
   Button,
   ButtonGroup,
-  CardActions,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configStore";
@@ -34,8 +33,8 @@ const Card = (props) => {
   const user = useSelector((state) => state.user.user);
   const nickName = userInfo.username.split("@")[0];
   const contents = postContents.split("``");
+  const [found, setFound] = React.useState(postProblem);
 
-  console.log("해결여부 : ", postProblem);
   const delPost = () => {
     if (user?.username === userInfo.username) {
       dispatch(postActions.delPostsBE(postId));
@@ -43,8 +42,8 @@ const Card = (props) => {
   };
 
   const foundPost = () => {
-    console.log("postId :", postId);
-    dispatch(postActions.foundPostBE(postId));
+    dispatch(postActions.foundPostBE(postId, found));
+    setFound(!found);
   };
 
   return (
@@ -90,10 +89,10 @@ const Card = (props) => {
               {postLanguage === "python" ? <DiPython /> : ""}
             </Typography>
             <Chip
-              color={postProblem ? "primary" : "error"}
+              color={found ? "primary" : "error"}
               size="small"
               variant="outlined"
-              label={postProblem ? "FOUND" : "NOT FOUND"}
+              label={found ? "FOUND" : "NOT FOUND"}
             />
           </Stack>
         </Stack>
@@ -131,34 +130,32 @@ const Card = (props) => {
       </CardContent>
 
       {user?.username === userInfo.username ? (
-        <CardActions>
-          <ButtonGroup>
-            <Button
-              variant="text"
-              onClick={() => history.push("/edit/" + postId)}
-            >
-              수정
-            </Button>
-            <Button
-              onClick={() => {
-                delPost();
-              }}
-              variant="text"
-              color="error"
-            >
-              삭제
-            </Button>
-            <Button
-              onClick={() => {
-                foundPost();
-              }}
-              variant="text"
-              color="success"
-            >
-              해결
-            </Button>
-          </ButtonGroup>
-        </CardActions>
+        <ButtonGroup>
+          <Button
+            variant="text"
+            onClick={() => history.push("/edit/" + postId)}
+          >
+            수정
+          </Button>
+          <Button
+            onClick={() => {
+              delPost();
+            }}
+            variant="text"
+            color="error"
+          >
+            삭제
+          </Button>
+          <Button
+            onClick={() => {
+              foundPost();
+            }}
+            variant="text"
+            color="success"
+          >
+            해결
+          </Button>
+        </ButtonGroup>
       ) : (
         ""
       )}

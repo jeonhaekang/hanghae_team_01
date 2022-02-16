@@ -12,6 +12,7 @@ const Main = (props) => {
   return (
     <Stack spacing={3} sx={{ paddingTop: "100px" }}>
       {postList.map((el, i) => {
+        console.log(el);
         return (
           <Box key={i}>
             <Card {...el} key={i}></Card>

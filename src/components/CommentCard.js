@@ -11,16 +11,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { commentActions } from "../redux/modules/comment";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
+import Permit from "../shared/Permit";
 
 const CommentCard = (props) => {
-  const dispatch = useDispatch();
-
-  const deleteComment = (postId, commentId) => {
-    dispatch(commentActions.delCommentBE(postId, commentId));
-  };
-
-  const loginUser = useSelector((state) => state.user.user?.username);
-
   const {
     userInfo,
     commentContent,
@@ -29,7 +22,17 @@ const CommentCard = (props) => {
     commentLike,
     postId,
     idx,
+    language,
   } = props;
+
+  const dispatch = useDispatch();
+  console.log(language);
+  const deleteComment = (postId, commentId) => {
+    dispatch(commentActions.delCommentBE(postId, commentId));
+  };
+
+  const loginUser = useSelector((state) => state.user.user?.username);
+
   const con = commentContent.split("``");
 
   const likeState = commentLikesUsername.find((el) => {
@@ -38,17 +41,21 @@ const CommentCard = (props) => {
     }
   });
 
-  const like = () => {
+  const [like, setLike] = React.useState(likeState);
+  const [likeCnt, setLikeCnt] = React.useState(commentLike);
+
+  const likeBtn = () => {
+    console.log(likeCnt);
     dispatch(commentActions.commentLikeBE(props, idx));
+    setLike(!like);
+    setLikeCnt(likeCnt + (like ? -1 : +1));
   };
 
   return (
     <Box position="relative">
       <Card>
         <Box position="absolute" bottom="10px" right="20px">
-          <Typography variant="body2">
-            좋아요 : {commentLike}
-          </Typography>
+          <Typography variant="body2">좋아요 : {likeCnt}</Typography>
         </Box>
         <Stack direction="row" position="absolute" right="0">
           {userInfo.username === loginUser && (
@@ -61,9 +68,11 @@ const CommentCard = (props) => {
               삭제
             </Button>
           )}
-          <Button color="error" onClick={like}>
-            {likeState ? <IoIosHeart /> : <IoIosHeartEmpty />}
-          </Button>
+          <Permit>
+            <Button color="error" onClick={likeBtn}>
+              {like ? <IoIosHeart /> : <IoIosHeartEmpty />}
+            </Button>
+          </Permit>
         </Stack>
         <CardContent>
           <Typography variant="h7" color="primary">
@@ -73,9 +82,9 @@ const CommentCard = (props) => {
             if (i % 2 === 1) {
               return (
                 <CodeEditor
-                  key={el}
+                  key={i}
                   value={el}
-                  language="js"
+                  language={language}
                   placeholder="Please enter code."
                   padding={15}
                   style={{
@@ -87,7 +96,7 @@ const CommentCard = (props) => {
                 />
               );
             } else {
-              return <pre key={el}> {el} </pre>;
+              return <pre key={i}> {el} </pre>;
             }
           })}
         </CardContent>

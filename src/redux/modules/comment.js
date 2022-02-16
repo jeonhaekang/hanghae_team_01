@@ -27,10 +27,10 @@ const delComment = createAction(DEL_COMMENT, (postId, commentId) => ({
   postId,
   commentId,
 }));
-const likeComment = createAction(LIKE_COMMENT, (props, idx, user) => ({
+const likeComment = createAction(LIKE_COMMENT, (props, idx, state) => ({
   props,
   idx,
-  user,
+  state,
 }));
 
 // middlewares
@@ -105,12 +105,11 @@ const commentLikeBE = (props, idx) => {
       .commentLike(props.commentId)
       .then((res) => {
         console.log(res);
-        // dispatch(likeComment(props, idx));
       })
       .catch((err) => {
         console.log("실패 : ", err.response);
-        // alert(err.response.data.data.errors[0].message);
-        // history.replace("/");
+        alert(err.response.data.data.errors[0].message);
+        history.replace("/");
       });
   };
 };
@@ -142,39 +141,6 @@ export default handleActions(
             return true;
           }
         );
-      }),
-    [LIKE_COMMENT]: (state, action) =>
-      produce(state, (draft) => {
-        const props = action.payload.props;
-        const idx = action.payload.idx;
-        const user = action.payload.user;
-
-        const result = draft.list[props.postId].commentList[
-          idx
-        ].commentLikesUsername.find((el) => {
-          if (el === user) {
-            return true;
-          }
-        });
-
-        if (result) {
-          const new_list = draft.list[props.postId].commentList[
-            idx
-          ].commentLikesUsername.filter((el) => {
-            if (el === user) {
-              return false;
-            }
-            return true;
-          });
-          console.log(draft.list[props.postId].commentList[idx].commentLike);
-          draft.list[props.postId].commentList[idx].commentLikesUsername =
-            new_list;
-        } else {
-          console.log(draft.list[props.postId].commentList[idx].commentLike);
-          draft.list[props.postId].commentList[idx].commentLikesUsername.push(
-            user
-          );
-        }
       }),
   },
   initialState

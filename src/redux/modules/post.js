@@ -106,6 +106,7 @@ const modifyPostBE = (id, post, originTag) => {
       .modifyPost(id, post, originTag)
       .then((res) => {
         console.log(res);
+
         dispatch(modifyPosts(id, post));
         alert("게시글을 수정하였습니다.");
         history.replace("/");
@@ -118,12 +119,12 @@ const modifyPostBE = (id, post, originTag) => {
   };
 };
 
-const foundPostBE = (id) => {
+const foundPostBE = (id, found) => {
   return async function (dispatch, getState, { history }) {
     apis
       .foundPost(id)
       .then((res) => {
-        console.log(res);
+        dispatch(modifyPosts(id, { postProblem: !found }));
       })
       .catch((err) => {
         console.log("실패 : ", err.response);
@@ -157,6 +158,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list = draft.list.map((el) => {
           if (el.postId === action.payload.postId) {
+            console.log({ ...el, ...action.payload.post });
             return { ...el, ...action.payload.post };
           }
           return el;
