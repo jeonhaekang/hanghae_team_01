@@ -1,12 +1,14 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import apis from "../../shared/apis";
+import { commentActions } from "../modules/comment";
 
 // action
 const LOAD_POSTS = "LOAD_POSTS";
 const SET_POSTS = "SET_POSTS";
 const DEL_POSTS = "DEL_POSTS";
 const MODIFY_POSTS = "MODIFY_POSTS";
+const FOUND_POSTS = "FOUND_POSTS";
 
 const initialState = {
   list: [],
@@ -20,6 +22,7 @@ const modifyPosts = createAction(MODIFY_POSTS, (postId, post) => ({
   postId,
   post,
 }));
+const foundPosts = createAction(DEL_POSTS, (postId) => ({ postId }));
 
 // middlewares
 const loadPostBE = () => {
@@ -77,9 +80,10 @@ const setPostsBE = (post) => {
 
 const delPostsBE = (postId) => {
   return async function (dispatch, getState, { history }) {
+    console.log("삭제할 포스트 아이디:", postId);
     if (window.confirm("정말로 삭제하시겠습니까?")) {
       apis
-        .delPost(postId)
+        .deletePost(postId)
         .then((res) => {
           console.log(res);
           dispatch(delPosts(postId));
@@ -105,6 +109,21 @@ const modifyPostBE = (id, post, originTag) => {
         dispatch(modifyPosts(id, post));
         alert("게시글을 수정하였습니다.");
         history.replace("/");
+      })
+      .catch((err) => {
+        console.log("실패 : ", err.response);
+        alert(err.response.data.data.errors[0].message);
+        history.replace("/");
+      });
+  };
+};
+
+const foundPostBE = (id) => {
+  return async function (dispatch, getState, { history }) {
+    apis
+      .foundPost(id)
+      .then((res) => {
+        console.log(res);
       })
       .catch((err) => {
         console.log("실패 : ", err.response);
@@ -153,6 +172,7 @@ const postActions = {
   getPostBE,
   delPostsBE,
   modifyPostBE,
+  foundPostBE,
 };
 
 export { postActions };

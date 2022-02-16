@@ -35,10 +35,16 @@ const Card = (props) => {
   const nickName = userInfo.username.split("@")[0];
   const contents = postContents.split("``");
 
+  console.log("해결여부 : ", postProblem);
   const delPost = () => {
     if (user?.username === userInfo.username) {
       dispatch(postActions.delPostsBE(postId));
     }
+  };
+
+  const foundPost = () => {
+    console.log("postId :", postId);
+    dispatch(postActions.foundPostBE(postId));
   };
 
   return (
@@ -141,6 +147,15 @@ const Card = (props) => {
               color="error"
             >
               삭제
+            </Button>
+            <Button
+              onClick={() => {
+                foundPost();
+              }}
+              variant="text"
+              color="success"
+            >
+              해결
             </Button>
           </ButtonGroup>
         </CardActions>

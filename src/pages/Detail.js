@@ -11,6 +11,7 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import { useDispatch, useSelector } from "react-redux";
 import { postActions } from "../redux/modules/post";
+import Permit from "../shared/Permit";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
@@ -83,7 +84,9 @@ const Detail = (props) => {
             </Typography>
             <Typography>ANSWER</Typography>
           </Stack>
-          <CommentWrite {...post} postId={id} />
+          <Permit>
+            <CommentWrite {...post} postId={id} />
+          </Permit>
 
           <Box>
             <CommentList postId={id} />
