@@ -25,6 +25,7 @@ function App() {
     dispatch(postActions.loadPostBE());
 
     if (token && !user) {
+      // 리덕스에 유저 정보 없고 토큰만 존재하면 서버에서 유저 정보 가져옴
       dispatch(userActions.getUserBE());
     }
   }); // 최소 렌더링시 리덕스에 서버데이터 갱신

@@ -2,7 +2,6 @@ import React from "react";
 import CodeEditor from "@uiw/react-textarea-code-editor";
 import {
   Button,
-  ButtonGroup,
   Box,
   Typography,
   Stack,
@@ -11,7 +10,7 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { commentActions } from "../redux/modules/comment";
-import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeart } from "react-icons/io";
 
 const CommentList = (props) => {
   const { postId } = props;
@@ -19,8 +18,14 @@ const CommentList = (props) => {
 
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(commentActions.loadCommentBE(postId));
+    console.log(postId);
+    dispatch(commentActions.getCommentBE(postId));
   });
+
+  const deleteComment = (id) => {
+    console.log(id);
+    dispatch(commentActions.delCommentBE(id));
+  };
 
   return (
     <Stack spacing={3}>
@@ -28,10 +33,17 @@ const CommentList = (props) => {
         const con = el.commentContent.split("``");
         console.log(el);
         return (
-          <Box key={i} position="relative">
-            <Card key={i}>
+          <Box position="relative">
+            <Card>
               <Box position="absolute" right="0">
-                <Button color="error">삭제</Button>
+                <Button
+                  color="error"
+                  onClick={() => {
+                    deleteComment(el.commentId);
+                  }}
+                >
+                  삭제
+                </Button>
                 <Button color="error">
                   <IoIosHeart />
                 </Button>
@@ -55,10 +67,10 @@ const CommentList = (props) => {
                           fontFamily:
                             "ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace",
                         }}
-                      ></CodeEditor>
+                      />
                     );
                   } else {
-                    return <Typography> {el} </Typography>;
+                    return <pre> {el} </pre>;
                   }
                 })}
               </CardContent>

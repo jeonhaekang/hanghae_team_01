@@ -41,7 +41,7 @@ const Edit = (props) => {
   const [title, setTitle] = React.useState(post?.postTitle); // 제목 데이터
   const [contents, setContents] = React.useState(post?.postContents); // 컨텐츠 데이터
   const [language, setLanguage] = React.useState(post?.postLanguage); // 언어 데이터
-  const [tag, setTag] = React.useState(post?.postTag);
+  const [tag, setTag] = React.useState(post?.postTag); // 태그 리스트
 
   const con = contents?.split("``");
 
@@ -104,13 +104,9 @@ const Edit = (props) => {
     );
   }; // 태그 삭제
 
-  const textAreaTap = (e) => {
-    console.log(e.key);
-  };
-
   return (
     <React.Fragment>
-      {post ? (
+      {post && (
         <Container
           sx={{
             borderLeft: "1px solid #E7EBF0",
@@ -147,9 +143,6 @@ const Edit = (props) => {
               multiline
               onChange={(e) => {
                 setContents(e.target.value);
-              }}
-              onKeyDown={(e) => {
-                textAreaTap(e);
               }}
               defaultValue={post?.postContents}
             />
@@ -238,8 +231,6 @@ const Edit = (props) => {
             </Button>
           </Stack>
         </Container>
-      ) : (
-        ""
       )}
     </React.Fragment>
   );
