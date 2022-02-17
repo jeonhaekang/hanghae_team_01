@@ -26,27 +26,28 @@
 - 와이어프레임
     - 메인 페이지
     
-    ![스크린샷 2022-02-11 11.39.16.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f87871e8-c5a4-4a01-90e3-0a62f5bab3bd/스크린샷_2022-02-11_11.39.16.png)
+<img width="611" alt="스크린샷 2022-02-17 오후 11 22 50" src="https://user-images.githubusercontent.com/73621658/154501535-9cb000c5-e4fb-415f-954a-b7213b65f339.png">
     
     - 상세 페이지
     
-    ![스크린샷 2022-02-11 11.52.40.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/babd3e38-3e97-44dd-a229-4bd058261565/스크린샷_2022-02-11_11.52.40.png)
+<img width="608" alt="스크린샷 2022-02-17 오후 11 22 54" src="https://user-images.githubusercontent.com/73621658/154501568-c2bf9f75-b28e-42c0-bc54-f4543092eb54.png">
     
     - 작성 페이지
     
-    ![스크린샷 2022-02-11 11.41.32.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bbeaa992-cb83-428f-ae77-a7e173d63595/스크린샷_2022-02-11_11.41.32.png)
+<img width="608" alt="스크린샷 2022-02-17 오후 11 23 00" src="https://user-images.githubusercontent.com/73621658/154501577-65e77b02-ec88-43a5-9975-d6683ef08c7d.png">
     
     - 로그인 페이지
     
-    ![스크린샷 2022-02-11 11.36.52.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b2631560-b931-4168-acf0-d5aeead1d451/스크린샷_2022-02-11_11.36.52.png)
+<img width="607" alt="스크린샷 2022-02-17 오후 11 23 06" src="https://user-images.githubusercontent.com/73621658/154501583-734a2eca-2c02-4b0d-993f-cd418a9c832d.png">
     
     - 회원가입 페이지
     
-    ![스크린샷 2022-02-11 11.37.59.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ea1555f5-a897-4dd3-ad81-14265b6ce85c/스크린샷_2022-02-11_11.37.59.png)
+<img width="607" alt="스크린샷 2022-02-17 오후 11 23 10" src="https://userimages.githubusercontent.com/73621658/154501599-adcd85f8-6bd3-4341-a859-918d950df9d6.png">
     
     - 헤더
     
-    ![스크린샷 2022-02-11 11.42.24.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1bcb8289-e168-4a2c-9b3f-00b1bc799dfd/스크린샷_2022-02-11_11.42.24.png)
+<img width="607" alt="스크린샷 2022-02-17 오후 11 23 15" src="https://user-
+-images.githubusercontent.com/73621658/154501591-3936b586-d442-4462-91b6-8e049e89238c.png">
     
 - API
     
