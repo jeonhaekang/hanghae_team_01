@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { commentActions } from "../redux/modules/comment";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import Permit from "../shared/Permit";
+import { styled } from "@mui/system";
 
 const CommentCard = (props) => {
   const {
@@ -76,7 +77,10 @@ const CommentCard = (props) => {
         </Stack>
         <CardContent>
           <Typography variant="h7" color="primary">
-            {userInfo.username}
+            <Stack direction="row">
+              <ProfileImage src={userInfo.profileImageUrl} />
+              {userInfo.username}
+            </Stack>
           </Typography>
           {con.map((el, i) => {
             if (i % 2 === 1) {
@@ -104,6 +108,13 @@ const CommentCard = (props) => {
     </Box>
   );
 };
+
+const ProfileImage = styled("img")({
+  width: "20px",
+  height: "20px",
+  borderRadius: "50px",
+  backgroundSize: "cover",
+});
 
 CommentCard.defaultProps = {
   comment: {},

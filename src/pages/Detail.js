@@ -34,7 +34,7 @@ const Detail = (props) => {
   return (
     <React.Fragment>
       {post && (
-        <Stack spacing={2} sx={{ paddingTop: "100px" }}>
+        <Stack spacing={2}>
           <Stack direction="row">
             <Typography variant="h5" color="error">
               <IoIosHelpCircleOutline />

@@ -17,8 +17,6 @@ instance.interceptors.request.use(function (config) {
   return config;
 });
 
-
-
 const apis = {
   // user
   signup: (post) => instance.post("/user/signup", post), // 회원가입

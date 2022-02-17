@@ -7,10 +7,12 @@ import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 //actions
 const SET_USER = "SET_USER";
 const LOGOUT = "LOGOUT";
+const PROFILE_UPDATE = "PROFILE_UPDATE";
 
 //action creators
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const logout = createAction(LOGOUT, () => ({}));
+const profileUpdate = createAction(PROFILE_UPDATE, (url) => ({ url }));
 
 //middleware actions
 const initialState = {
@@ -59,6 +61,14 @@ const getUserBE = () => {
   };
 };
 
+const profileUpdateBE = (url) => {
+  return function (dispatch, getState, { history }) {
+    dispatch(profileUpdate(url));
+    alert("이미지를 수정하였습니다.");
+    history.replace("/");
+  };
+};
+
 const logoutBE = () => {
   return function (dispatch, getState, { history }) {
     dispatch(logout());
@@ -78,6 +88,10 @@ export default handleActions(
         draft.is_login = false;
         draft.user = null;
       }),
+    [PROFILE_UPDATE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user.profileImageUrl = action.payload.url;
+      }),
   },
   initialState
 );
@@ -86,6 +100,7 @@ const userActions = {
   loginActionBE,
   getUserBE,
   logoutBE,
+  profileUpdateBE,
 };
 
 export { userActions };

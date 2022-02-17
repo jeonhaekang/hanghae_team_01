@@ -115,7 +115,7 @@ const Edit = (props) => {
             minHeight: "100vh",
           }}
         >
-          <Stack spacing={3} sx={{ paddingTop: "100px" }}>
+          <Stack spacing={3}>
             <Stack direction="row">
               <Typography variant="h5" color="error">
                 <BiErrorCircle />

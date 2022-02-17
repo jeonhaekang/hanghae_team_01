@@ -63,7 +63,7 @@ const Signup = (props) => {
         minHeight: "100vh",
       }}
     >
-      <Stack spacing={3} sx={{ paddingTop: "100px" }}>
+      <Stack spacing={3}>
         <Typography>SIGNUP</Typography>
 
         <Stack>

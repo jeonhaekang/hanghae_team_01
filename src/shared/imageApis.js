@@ -14,5 +14,5 @@ instance.interceptors.request.use(function (config) {
 });
 
 export const apis = {
-  uploadImage: (image) => instance.post("/user/image", image),
+  uploadImage: (image) => instance.post("/user/images", image),
 };

@@ -30,7 +30,7 @@ const Login = (props) => {
         minHeight: "100vh",
       }}
     >
-      <Stack spacing={3} sx={{ paddingTop: "100px" }}>
+      <Stack spacing={3}>
         <Typography>LOGIN</Typography>
         <TextField
           id="outlined-id-input"

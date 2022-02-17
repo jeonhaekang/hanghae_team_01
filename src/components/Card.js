@@ -1,6 +1,7 @@
 import React from "react";
 
 import Divider from "@mui/material/Divider";
+import { styled } from "@mui/system";
 
 import { DiJava, DiJsBadge, DiPython, DiCss3, DiHtml5 } from "react-icons/di";
 import {
@@ -80,7 +81,11 @@ const Card = (props) => {
             spacing={2}
             alignContent="center"
           >
-            <Typography color="primary">{nickName}</Typography>
+            <Stack direction="row">
+              <ProfileImage src={userInfo.profileImageUrl} />
+              <Typography color="primary">{nickName}</Typography>
+            </Stack>
+
             <Typography fontSize={23} color="primary">
               {postLanguage === "js" ? <DiJsBadge /> : ""}
               {postLanguage === "css" ? <DiCss3 /> : ""}
@@ -162,6 +167,13 @@ const Card = (props) => {
     </CardBox>
   );
 };
+
+const ProfileImage = styled("img")({
+  width: "20px",
+  height: "20px",
+  borderRadius: "50px",
+  backgroundSize: "cover",
+});
 
 Card.defaultProps = {
   postContents: "본문",
