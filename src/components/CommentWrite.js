@@ -1,8 +1,4 @@
 import React from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import { Button, TextField, Stack } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { commentActions } from "../redux/modules/comment";
@@ -12,7 +8,6 @@ const CommentWrite = (props) => {
   const dispatch = useDispatch();
   const contentsRef = React.useRef(null);
   const [contents, setContents] = React.useState(""); // 컨텐츠 데이터
-  const [language, setLanguage] = React.useState("js"); // 언어 데이터
 
   const setCode = () => {
     // 드래그한 부분 코드로 변환
@@ -29,10 +24,6 @@ const CommentWrite = (props) => {
     setContents(result);
     contentsRef.current.value = result;
     // textArea value변경
-  };
-
-  const languageSelect = (e) => {
-    setLanguage(e);
   };
 
   const setComment = () => {

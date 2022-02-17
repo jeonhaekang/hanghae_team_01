@@ -12,7 +12,10 @@ const Header = (props) => {
   const is_login = useSelector((state) => state.user.is_login);
 
   const logout = () => {
-    dispatch(userActions.logoutBE());
+    if (window.confirm("로그아웃 하시겠습니까?")) {
+      dispatch(userActions.logoutBE());
+      history.replace("/");
+    }
   };
 
   return (

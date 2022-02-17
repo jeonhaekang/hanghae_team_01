@@ -1,14 +1,12 @@
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import apis from "../../shared/apis";
-import { commentActions } from "../modules/comment";
 
 // action
 const LOAD_POSTS = "LOAD_POSTS";
 const SET_POSTS = "SET_POSTS";
 const DEL_POSTS = "DEL_POSTS";
 const MODIFY_POSTS = "MODIFY_POSTS";
-const FOUND_POSTS = "FOUND_POSTS";
 
 const initialState = {
   list: [],
@@ -22,7 +20,6 @@ const modifyPosts = createAction(MODIFY_POSTS, (postId, post) => ({
   postId,
   post,
 }));
-const foundPosts = createAction(DEL_POSTS, (postId) => ({ postId }));
 
 // middlewares
 const loadPostBE = () => {
@@ -40,6 +37,23 @@ const loadPostBE = () => {
       });
   };
 }; // 서버에서 게시물 리스트 가져옴
+
+const loadMyPostBE = () => {
+  return async function (dispatch, getState, { history }) {
+    const user = getState().user.user;
+    apis
+      .getMyPost(user.userId)
+      .then((res) => {
+        const postList = res.data.data.postList;
+        dispatch(loadPosts(postList)); // redux에 서버에서 가져온 리스트 추가
+      })
+      .catch((err) => {
+        console.log("실패 : ", err.response);
+        alert(err.response.data.data.errors[0].message);
+        history.replace("/");
+      });
+  };
+};
 
 const getPostBE = (postId) => {
   return async function (dispatch, getState, { history }) {
@@ -175,6 +189,7 @@ const postActions = {
   delPostsBE,
   modifyPostBE,
   foundPostBE,
+  loadMyPostBE,
 };
 
 export { postActions };

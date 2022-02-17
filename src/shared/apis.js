@@ -17,6 +17,8 @@ instance.interceptors.request.use(function (config) {
   return config;
 });
 
+
+
 const apis = {
   // user
   signup: (post) => instance.post("/user/signup", post), // 회원가입
@@ -27,7 +29,8 @@ const apis = {
   // post
   post: (post) => instance.post("/posts", post), // 게시글 작성
   postList: () => instance.get("/posts"), // 게시글 리스트
-  getPost: (postId) => instance.get("/posts/" + postId), // 게시글 단건 가져오기
+  getMyPost: (userId) => instance.get("/posts/user/" + userId), // 게시글 단건 가져오기
+  foundPost: (postId) => instance.get("/posts/problem/" + postId), // 문제 해결 버튼
   deletePost: (postId) => instance.delete("/posts/" + postId), // 게시글 삭제
   modifyPost: (postId, post, originTag) =>
     instance.put("/posts/" + postId, { ...post, originTag: originTag }), // 게시글 수정

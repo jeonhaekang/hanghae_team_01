@@ -40,7 +40,7 @@ const signupBE = (post) => {
       .then((res) => {
         console.log(res);
         alert("회원가입에 성공하였습니다.");
-        history.replace("/");
+        history.replace("/login");
       })
       .catch((err) => {
         console.log(err.response);
