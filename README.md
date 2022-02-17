@@ -1,70 +1,121 @@
-# Getting Started with Create React App
+# 🚨404 FOUND
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+코드가 작동을 안하나요? 404 FOUND에 올려보세요!
 
-## Available Scripts
+[React App](http://jeonhaekang.shop.s3-website.ap-northeast-2.amazonaws.com/)
 
-In the project directory, you can run:
+[https://github.com/jeonhaekang/hanghae_team_01](https://github.com/jeonhaekang/hanghae_team_01)
 
-### `yarn start`
+## ****👥멤버****
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Back-end: 김현진 Spring
+- Front-end: 전해강 React
 
-### `yarn test`
+## ****🗓프로젝트 기간****
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `yarn build`
+2022-02-11 → 2022-02-17
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ****🧩와이어프레임 & API****
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 와이어프레임
+    - 메인 페이지
+    
+    ![스크린샷 2022-02-11 11.39.16.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f87871e8-c5a4-4a01-90e3-0a62f5bab3bd/스크린샷_2022-02-11_11.39.16.png)
+    
+    - 상세 페이지
+    
+    ![스크린샷 2022-02-11 11.52.40.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/babd3e38-3e97-44dd-a229-4bd058261565/스크린샷_2022-02-11_11.52.40.png)
+    
+    - 작성 페이지
+    
+    ![스크린샷 2022-02-11 11.41.32.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bbeaa992-cb83-428f-ae77-a7e173d63595/스크린샷_2022-02-11_11.41.32.png)
+    
+    - 로그인 페이지
+    
+    ![스크린샷 2022-02-11 11.36.52.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b2631560-b931-4168-acf0-d5aeead1d451/스크린샷_2022-02-11_11.36.52.png)
+    
+    - 회원가입 페이지
+    
+    ![스크린샷 2022-02-11 11.37.59.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ea1555f5-a897-4dd3-ad81-14265b6ce85c/스크린샷_2022-02-11_11.37.59.png)
+    
+    - 헤더
+    
+    ![스크린샷 2022-02-11 11.42.24.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1bcb8289-e168-4a2c-9b3f-00b1bc799dfd/스크린샷_2022-02-11_11.42.24.png)
+    
+- API
+    
+    
 
-### `yarn eject`
+## 📖페이지
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 메인페이지
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![메인 비로그인.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/becc8ea0-2fdd-4004-8944-c6c8f5916c3a/메인_비로그인.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+로그인 전
 
-## Learn More
+![메인 로그인.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/24f05fb8-88a4-46fd-be2f-ee6a4dbd8f14/메인_로그인.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+로그인 후
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![스크린샷 2022-02-17 오후 11.01.03.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b91fd3c7-b900-44fe-acbf-3f8e93e9ef3a/스크린샷_2022-02-17_오후_11.01.03.png)
 
-### Code Splitting
+모바일 페이지
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![프로필사진 수정.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9cd95728-2bd7-494d-9c79-fd6666a9fa1a/프로필사진_수정.png)
 
-### Analyzing the Bundle Size
+프로필 사진 수정
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 로그인 상태에 따른 페이지 변화
+- 모바일 반응형
+- 전체 게시글 표시 및 내가 쓴 게시글 확인 가능
+- 프로필 이미지 설정 가능
 
-### Making a Progressive Web App
+### 회원가입 및 로그인 페이지
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![회원가입 페이지.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18448a39-c363-4afc-8b18-a6d1c7b91934/회원가입_페이지.png)
 
-### Advanced Configuration
+회원가입
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![로그인 페이지.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/17802ca1-62fd-41a3-9cf1-3a1c2cbde3d5/로그인_페이지.png)
 
-### Deployment
+로그인
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- 아이디 : 이메일 형식으로 기입
+- 비밀번호 : 특수문자와 대문자를 포함한 8자 이상
 
-### `yarn build` fails to minify
+## 게시글 작성 페이지
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![게시글 작성 페이지.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d854a61f-31f1-455a-8566-168f61443eed/게시글_작성_페이지.png)
+
+게시글 작성 페이지
+
+![코드변환.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/feb79597-0615-4692-bcef-6a17e0fc42f9/코드변환.gif)
+
+코드 형식으로 변환
+
+![태그 시연영상.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/883a88d8-93c0-4883-96c6-fa950577099f/태그_시연영상.gif)
+
+태그 입력 및 삭제 기능
+
+- 에러코드 리포트를 위해 코드버튼을 통해 코드 형식으로 변환
+- 태그 입력 기능
+
+## 상세 페이지
+
+![스크린샷 2022-02-17 오후 11.16.08.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e646bd3e-bbd7-4f9f-b6c7-a51ebe7410df/스크린샷_2022-02-17_오후_11.16.08.png)
+
+상세 페이지
+
+![디테일 페이지 시연.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ecc782ba-f30c-4b80-939b-51c6938046ca/디테일_페이지_시연.gif)
+
+- 코드형식 덧글 작성 기능
+- 덧글 좋아요 기능
